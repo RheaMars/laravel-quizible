@@ -13,13 +13,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
 
-    // Disable/enable user registration:
-    // Route::get('register', [RegisteredUserController::class, 'create'])->name('register');
-    // Route::post('register', [RegisteredUserController::class, 'store']);
-    // Redirect users trying to access register page to login page:
-    Route::match(['get', 'post'], 'register', function(){
-        return redirect('/login');
-    });
+    Route::get('register/{token}', [RegisteredUserController::class, 'create'])->name('register');
+    Route::post('register', [RegisteredUserController::class, 'store']);
 
     Route::get('login', [AuthenticatedSessionController::class, 'create'])
                 ->name('login');
@@ -40,6 +35,8 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
+    Route::get('invite', [RegisteredUserController::class, 'invite_view'])->name('invite_view');
+    Route::post('invite', [RegisteredUserController::class, 'invite'])->name('invite');
     Route::get('verify-email', EmailVerificationPromptController::class)
                 ->name('verification.notice');
 
