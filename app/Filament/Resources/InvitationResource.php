@@ -25,7 +25,7 @@ class InvitationResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
     protected static ?string $navigationLabel = 'Offene Einladungen';
     protected static ?string $title = 'Offene Einladungen';
-    protected static ?string $pluralModelLabel = 'offene Einladungen';
+    protected static ?string $pluralModelLabel = 'Offene Einladungen';
 
     public static function form(Form $form): Form
     {
