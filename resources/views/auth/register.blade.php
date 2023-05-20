@@ -5,7 +5,7 @@
         <!-- Email Address -->
         <div class="mt-4">
             <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" value="{{ $invite->email }}" disabled />
+            <x-text-input class="block mt-1 w-full" type="email" value="{{ $invite->email }}" disabled />
             <x-text-input id="email" class="block mt-1 w-full" type="hidden" name="email" value="{{ $invite->email }}"  />
         </div>
 
