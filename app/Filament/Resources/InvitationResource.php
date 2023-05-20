@@ -2,7 +2,10 @@
 
 namespace App\Filament\Resources;
 
+use Closure;
 use Filament\Forms;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Filament\Tables;
 use App\Models\Invitation;
 use Filament\Resources\Form;
@@ -13,21 +16,33 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\InvitationResource\Pages;
 use App\Filament\Resources\InvitationResource\RelationManagers;
+use Illuminate\Support\Str;
 
 class InvitationResource extends Resource
 {
     protected static ?string $model = Invitation::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
-    protected static ?string $navigationLabel = 'Einladungen';
-    protected static ?string $title = 'Einladungen';
-    protected static ?string $pluralModelLabel = 'Einladungen';
+    protected static ?string $navigationLabel = 'Offene Einladungen';
+    protected static ?string $title = 'Offene Einladungen';
+    protected static ?string $pluralModelLabel = 'offene Einladungen';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                //
+                TextInput::make('email')
+                    ->label('E-Mail')
+                    ->email()
+                    ->unique('invitations', 'email')
+                    ->unique('users', 'email')
+                    ->required(),
+                Select::make('roles')->label('Rollen')
+                    ->required()
+                    ->multiple()
+                    ->relationship('roles', 'name')
+                    ->preload(),
+
             ]);
     }
 
@@ -44,7 +59,7 @@ class InvitationResource extends Resource
                 //
             ])
             ->actions([
-                //
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
@@ -62,6 +77,7 @@ class InvitationResource extends Resource
     {
         return [
             'index' => Pages\ListInvitations::route('/'),
+            'create' => Pages\CreateInvitation::route('/create'),
         ];
     }
 }

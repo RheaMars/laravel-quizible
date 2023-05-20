@@ -49,14 +49,18 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        // find Invitation from new user
+        $invitation = Invitation::where('email', $request->email)->first();
+        $roles = $invitation->getRoleNames()->toArray();
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-        ])->assignRole(Role::findByName('user'));
+        ])->assignRole($roles);
 
-        // delete Invitation from new user
-        Invitation::where('email', $user->email)->first()->delete();
+        // delete Invitation and Invitation-Roles
+        $invitation->delete();
 
         event(new Registered($user));
         Auth::login($user);
@@ -64,46 +68,5 @@ class RegisteredUserController extends Controller
         return redirect(RouteServiceProvider::HOME);
     }
 
-    public function invite_view()
-    {
-        if (!auth()->user()->hasRole('admin')) {
-            abort(404);
-        } else {
-            return view('auth.invite');
-        }
-    }
 
-
-    public function invite(Request $request)
-    {
-        if (!auth()->user()->hasRole('admin')) abort(404);
-
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|email|unique:users,email'
-            ]);
-        $validator->after(function ($validator) use ($request) {
-            if (Invitation::where('email', $request->input('email'))->exists()) {
-                $validator->errors()->add('email', 'Es existiert bereits eine Einladung für diese E-Mail-Adresse!');
-            }
-        });
-        if ($validator->fails()) {
-            return redirect(route('invite_view'))
-                ->withErrors($validator)
-                ->withInput();
-        }
-        do {
-            $token = Str::random(60);
-        } while (Invitation::where('token', $token)->first());
-        Invitation::create([
-            'token' => $token,
-            'email' => $request->input('email')
-        ]);
-        $url = URL::temporarySignedRoute(
-            'register', now()->addMinutes(300), ['token' => $token]
-        );
-
-        Notification::route('mail', $request->input('email'))->notify(new InviteNotification($url));
-
-        return redirect('/admin/invitations');
-    }
 }

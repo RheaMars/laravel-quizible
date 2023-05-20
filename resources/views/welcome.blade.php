@@ -30,7 +30,6 @@
             <div class="max-w-7xl mx-auto p-6 lg:p-8">
 
                 <div class="text-center">
-                    <img src="{{ asset('img/quiz_figur.jpeg') }}" style="height:200px;" alt="">
 
                     <div class="mt-16">
                         @if (session()->has('error'))

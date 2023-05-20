@@ -36,11 +36,11 @@ class InviteNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-            ->subject('Registrierung bei Laravel Quizible')
+            ->subject('Registrierung bei ' . config('app.name'))
             ->greeting('Hallo!')
             ->line('Das ist eine Einladung zur Registrierung auf ' . config('app.name'))
             ->action('Jetzt registrieren',$this->notificationUrl)
-            ->line('Wichtiger Hinweis: der Registrierungs-Link läuft in 300 Minuten ab!');
+            ->line('Wichtiger Hinweis: der Registrierungs-Link läuft in 7 Tagen ab.');
     }
 
     /**
