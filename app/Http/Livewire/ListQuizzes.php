@@ -41,7 +41,7 @@ class ListQuizzes extends Component implements HasTable {
     protected function getTableColumns(): array {
         return [
             TextColumn::make( 'name' )->label( 'Name' )->sortable()->searchable(),
-            TextColumn::make( 'questions_count' )->label( 'Fragen' )->counts( 'questions' ),
+            TextColumn::make( 'questions_count' )->label( 'Fragen' )->counts( 'questions' )->sortable(),
             TextColumn::make( 'created_at' )->label( 'Erstellt am' )
             ->dateTime( 'd.m.Y H:i:s' )
             ->sortable()
@@ -71,11 +71,5 @@ class ListQuizzes extends Component implements HasTable {
         ];
     }
 
-    public static function getEloquentQuery(): Builder {
-        return parent::getEloquentQuery()
-        ->withoutGlobalScopes( [
-            SoftDeletingScope::class,
-        ] );
-    }
 }
 
