@@ -15,12 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/app');
 });
-
-Route::get('/quizzes', function () {
-    return view('quizzes');
-})->middleware(['auth', 'verified'])->name('quizzes');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

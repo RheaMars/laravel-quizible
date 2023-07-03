@@ -20,6 +20,10 @@ use Illuminate\Support\Str;
 
 class InvitationResource extends Resource
 {
+    protected static ?string $navigationGroup = 'Admin-Bereich';
+
+    protected static ?int $navigationSort = 2;
+
     protected static ?string $model = Invitation::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
