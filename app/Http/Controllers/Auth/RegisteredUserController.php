@@ -36,7 +36,7 @@ class RegisteredUserController extends Controller
             return view('auth.register',['invite' => $invite]);
         } else {
             session()->flash('error', 'Diese Einladung existiert nicht mehr.');
-            return view('welcome');
+            return view('auth.register-error');
         }
     }
 
