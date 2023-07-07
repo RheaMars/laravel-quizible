@@ -83,11 +83,11 @@ return [
     | into the admin panel.
     |
     */
-
-    'auth' => [
-        'guard' => env('FILAMENT_AUTH_GUARD', 'web'),
-        'pages' => [
-            'login' => \Filament\Http\Livewire\Auth\Login::class,
+    "auth" => [
+        "guard" => env("FILAMENT_AUTH_GUARD", "web"),
+        "pages" => [
+            "login" =>
+                \JeffGreco13\FilamentBreezy\Http\Livewire\Auth\Login::class,
         ],
     ],
 
