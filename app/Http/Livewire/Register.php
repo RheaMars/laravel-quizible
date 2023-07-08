@@ -74,18 +74,14 @@ class Register extends FilamentBreezyRegister implements HasForms {
         if ( $invite ) {
             $this->email = $invite->email;
             $view = view( 'filament-breezy::register' );
-
-            $view->layout( 'filament::components.layouts.base', [
-                'title' => __( 'filament-breezy::default.registration.title' ),
-            ] );
         } else {
             $view = view( 'filament-breezy::register-error' );
 
-            $view->layout( 'filament::components.layouts.base', [
-                'title' => __( 'filament-breezy::default.registration.title' ),
-            ] );
         }
 
+        $view->layout( 'filament::components.layouts.base', [
+            'title' => __( 'filament-breezy::default.registration.title' ),
+        ] );
         return $view;
 
     }
