@@ -36,6 +36,7 @@ class Register extends FilamentBreezyRegister implements HasForms {
             ->required(),
             TextInput::make( 'email' )
             ->label( __( 'filament-breezy::default.fields.email' ) )
+            ->extraInputAttributes( [ 'autocomplete' => 'off' ] )
             ->email()
             ->disabled()
             ->unique( table: config( 'filament-breezy.user_model' ) ),
@@ -58,6 +59,10 @@ class Register extends FilamentBreezyRegister implements HasForms {
 
         // find Invitation
         $invitation = Invitation::where( 'email', $this->email )->first();
+
+        if ( !$invitation ) {
+            return redirect()->to( 'register/error' );
+        }
         $roles = $invitation->getRoleNames()->toArray();
         $user = User::create( $this->form->getState() );
         $user->assignRole( $roles );
