@@ -24,7 +24,7 @@ class CreateInvitation extends CreateRecord
 
     protected function mutateFormDataBeforeCreate(array $data): array
     {
-        $data['token'] = Str::random(20) . now();
+        $data['token'] = Str::random(20) . time();
         return $data;
     }
 
