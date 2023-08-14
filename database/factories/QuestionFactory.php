@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\QuizQuestion>
  */
-class QuizQuestionFactory extends Factory
+class
+QuestionFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -23,6 +24,7 @@ class QuizQuestionFactory extends Factory
             'points' => fake()->randomElement([null, fake()->numberBetween(1, 5)]),
             'explanation' => fake()->randomElement([null, fake()->sentence()]),
             'image_path' => fake()->randomElement([null, '/tmp/my-image124.jpg']),
+            'sort' => fake()->numberBetween(1,4),
         ];
     }
 }

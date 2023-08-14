@@ -4,8 +4,8 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Quiz;
-use App\Models\QuizAnswer;
-use App\Models\QuizQuestion;
+use App\Models\Answer;
+use App\Models\Question;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
         User::factory(10)->create();
 
         Quiz::factory()->count(30)->create();
-        QuizQuestion::factory()->count(90)->create();
-        QuizAnswer::factory()->count(270)->create();
+        Question::factory()->count(90)->create();
+        Answer::factory()->count(270)->create();
     }
 }
