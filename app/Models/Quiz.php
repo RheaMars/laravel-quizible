@@ -6,21 +6,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Quiz extends Model
-{
+class Quiz extends Model {
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'name',
+        'name', 'creator_id'
     ];
 
-    public function creator()
-    {
-        return $this->belongsTo(User::class);
+    public function creator() {
+        return $this->belongsTo( User::class );
     }
 
-    public function questions()
-    {
-        return $this->hasMany(QuizQuestion::class);
+    public function questions() {
+        return $this->hasMany( Question::class );
     }
 }
