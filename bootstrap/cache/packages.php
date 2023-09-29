@@ -1,11 +1,4 @@
 <?php return array (
-  'akaunting/laravel-money' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Akaunting\\Money\\Provider',
-    ),
-  ),
   'blade-ui-kit/blade-heroicons' => 
   array (
     'providers' => 
@@ -20,6 +13,13 @@
       0 => 'BladeUI\\Icons\\BladeIconsServiceProvider',
     ),
   ),
+  'filament/actions' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Filament\\Actions\\ActionsServiceProvider',
+    ),
+  ),
   'filament/filament' => 
   array (
     'providers' => 
@@ -32,6 +32,13 @@
     'providers' => 
     array (
       0 => 'Filament\\Forms\\FormsServiceProvider',
+    ),
+  ),
+  'filament/infolists' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Filament\\Infolists\\InfolistsServiceProvider',
     ),
   ),
   'filament/notifications' => 
@@ -55,15 +62,18 @@
       0 => 'Filament\\Tables\\TablesServiceProvider',
     ),
   ),
-  'jeffgreco13/filament-breezy' => 
+  'filament/widgets' => 
   array (
     'providers' => 
     array (
-      0 => 'JeffGreco13\\FilamentBreezy\\FilamentBreezyServiceProvider',
+      0 => 'Filament\\Widgets\\WidgetsServiceProvider',
     ),
-    'aliases' => 
+  ),
+  'kirschbaum-development/eloquent-power-joins' => 
+  array (
+    'providers' => 
     array (
-      'FilamentBreezy' => 'JeffGreco13\\FilamentBreezy\\Facades\\FilamentBreezy',
+      0 => 'Kirschbaum\\PowerJoins\\PowerJoinsServiceProvider',
     ),
   ),
   'laravel-lang/attributes' => 

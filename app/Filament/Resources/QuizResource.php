@@ -5,8 +5,8 @@ namespace App\Filament\Resources;
 use Filament\Forms;
 use App\Models\Quiz;
 use Filament\Tables;
-use Filament\Resources\Form;
-use Filament\Resources\Table;
+use Filament\Forms\Form;
+use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Toggle;
@@ -26,7 +26,7 @@ use App\Filament\Resources\QuizResource\RelationManagers\QuestionsRelationManage
 class QuizResource extends Resource {
     protected static ?string $model = Quiz::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     protected static ?string $navigationLabel = 'Quizzes';
     protected static ?string $title = 'Quiz';
@@ -80,7 +80,7 @@ class QuizResource extends Resource {
             IconColumn::make( 'deleted_at' )
             ->label( 'Status' )
             ->options( [
-                'heroicon-o-badge-check',
+                'heroicon-o-check-badge',
                 'heroicon-o-trash' => fn ( $state, $record ): bool => $record->deleted_at != null
             ] )
             ->colors( [

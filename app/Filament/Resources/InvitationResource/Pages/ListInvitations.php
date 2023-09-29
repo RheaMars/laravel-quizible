@@ -11,7 +11,7 @@ class ListInvitations extends ListRecords
     protected static string $resource = InvitationResource::class;
     protected static ?string $title = 'Offene Einladungen';
 
-    protected function getActions(): array
+    protected function getHeaderActions(): array
     {
         return [
            //Actions\Action::make('Einladung versenden')->url(route('invite'))

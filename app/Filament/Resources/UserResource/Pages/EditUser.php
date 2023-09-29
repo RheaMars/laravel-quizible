@@ -12,7 +12,7 @@ class EditUser extends EditRecord
 
     protected static ?string $title = 'Benutzer bearbeiten';
 
-    protected function getActions(): array
+    protected function getHeaderActions(): array
     {
         return [
             Actions\DeleteAction::make()->recordTitle('Benutzer'),
