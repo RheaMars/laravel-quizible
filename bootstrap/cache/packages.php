@@ -69,6 +69,17 @@
       0 => 'Filament\\Widgets\\WidgetsServiceProvider',
     ),
   ),
+  'jeffgreco13/filament-breezy' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Jeffgreco13\\FilamentBreezy\\FilamentBreezyServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'FilamentBreezy' => 'Jeffgreco13\\FilamentBreezy\\Facades\\FilamentBreezy',
+    ),
+  ),
   'kirschbaum-development/eloquent-power-joins' => 
   array (
     'providers' => 
