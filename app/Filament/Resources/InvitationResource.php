@@ -2,8 +2,6 @@
 
 namespace App\Filament\Resources;
 
-use Closure;
-use Filament\Forms;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables;
@@ -12,24 +10,20 @@ use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Filament\Tables\Columns\TextColumn;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\InvitationResource\Pages;
-use App\Filament\Resources\InvitationResource\RelationManagers;
-use Illuminate\Support\Str;
 
 class InvitationResource extends Resource
 {
     protected static ?string $navigationGroup = 'Admin-Bereich';
-
     protected static ?int $navigationSort = 2;
-
-    protected static ?string $model = Invitation::class;
-
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
     protected static ?string $navigationLabel = 'Offene Einladungen';
-    protected static ?string $title = 'Offene Einladungen';
+
+    protected static ?string $model = Invitation::class;
+    protected static ?string $modelLabel = 'Einladung';
     protected static ?string $pluralModelLabel = 'Offene Einladungen';
+
+    protected static ?string $title = 'Offene Einladungen';
 
     public static function form(Form $form): Form
     {
