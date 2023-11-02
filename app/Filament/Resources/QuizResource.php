@@ -3,6 +3,8 @@
 namespace App\Filament\Resources;
 
 use App\Models\Quiz;
+use Filament\Forms\Components\Grid;
+use Filament\Forms\Get;
 use Filament\Tables;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
@@ -34,27 +36,46 @@ class QuizResource extends Resource {
                 TextInput::make( 'name' )->label( 'Name' )->required(),
             ] ),
             Section::make( 'Fragen' )->collapsible()->schema( [
-                Repeater::make( 'questions' )->label( 'Frage' )->relationship()->orderable( 'sort' )->collapsible()->schema( [
-                    Select::make( 'type' )
-                    ->label( 'Typ' )
-                    ->required()
-                    ->options( [
-                        'multiple-choice' => 'Multiple-Choice',
-                        'true-false' => 'Wahr-Falsch',
-                        'short-answer' => 'Kurz-Antwort',
-                    ] ),
+                Repeater::make( 'questions' )->label( 'Frage' )->relationship()->orderColumn(  )->collapsible()->schema( [
+                    Select::make('type')
+                        ->label('Typ')
+                        ->required()
+                        ->options([
+                            'multiple-choice' => 'Multiple-Choice',
+                            'true-false' => 'Wahr-Falsch',
+                        ])
+                        ->live()
+                        ->afterStateUpdated(fn (Select $component) => $component
+                            ->getContainer()
+                            ->getComponent('dynamicTypeFields')
+                            ->getChildComponentContainer()
+                            ->fill()),
                     TextInput::make( 'content' )
                     ->label( 'Frage' )
                     ->required()
                     ->columnSpan( 3 ),
-                    Repeater::make( 'answers' )->label( 'Antworten' )->relationship()->orderable( 'sort' )->collapsible()->schema( [
-                        TextInput::make( 'content' )
-                        ->label( 'Antwort' )
-                        ->required()
-                        ->columnSpan( 3 ),
-                        Toggle::make( 'is_correct' )->label( 'richtige Antwort' )->inline()->columnSpan( 1 )
-                    ] )->columnSpan( 4 )->createItemButtonLabel( 'Antwort hinzufügen' )
-                ] )->columns( 4 )->createItemButtonLabel( 'Frage hinzufügen' ),
+                    Grid::make()
+                        ->schema(fn (Get $get): array => match ($get('type')) {
+                            'multiple-choice' => [
+                                Repeater::make('answers')->label('Antworten')->relationship()->orderColumn()->collapsible()->schema([
+                                    TextInput::make('content')
+                                        ->label('Antwort')
+                                        ->required()
+                                        ->columnSpan(3),
+                                    Toggle::make('is_correct')->label('richtige Antwort')->inline()->columnSpan(1)
+                                ])
+                                ->columnSpan('full')
+                                ->addActionLabel('Antwort hinzufügen')
+                            ],
+                            'true-false' => [
+                                Toggle::make('is_correct')->label('richtige Antwort')->inline()->columnSpan(1)
+                            ],
+                            default => [],
+                        })
+                        ->columns(4)
+                        ->key('dynamicTypeFields'),
+
+                ] )->columns( 4 )->addActionLabel( 'Frage hinzufügen' ),
             ] ),
         ] );
     }
@@ -112,10 +133,5 @@ class QuizResource extends Resource {
         ->withoutGlobalScopes( [
             SoftDeletingScope::class,
         ] );
-
-        //        return parent::getEloquentQuery()
-        //            ->withoutGlobalScopes( [
-        //                SoftDeletingScope::class,
-        // ] );
     }
 }
