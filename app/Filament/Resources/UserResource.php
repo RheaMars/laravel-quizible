@@ -8,9 +8,9 @@ use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
-use Filament\Resources\Form;
+use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Resources\Table;
+use Filament\Tables\Table;
 use Filament\Tables;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
@@ -74,7 +74,7 @@ class UserResource extends Resource
                 IconColumn::make('deleted_at')
                     ->label('Status')
                     ->options([
-                        'heroicon-o-badge-check',
+                        'heroicon-o-check-badge',
                         'heroicon-o-trash' => fn ($state, $record): bool => $record->deleted_at != null
                     ])
                     ->colors([
