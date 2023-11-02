@@ -3,7 +3,9 @@
 namespace App\Filament\Resources\QuizResource\Pages;
 
 use App\Filament\Resources\QuizResource;
-use Filament\Pages\Actions;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\ForceDeleteAction;
+use Filament\Actions\RestoreAction;
 use Filament\Resources\Pages\EditRecord;
 
 class EditQuiz extends EditRecord {
@@ -11,9 +13,9 @@ class EditQuiz extends EditRecord {
 
     protected function getHeaderActions(): array {
         return [
-            Actions\DeleteAction::make(),
-            Actions\ForceDeleteAction::make(),
-            Actions\RestoreAction::make(),
+            DeleteAction::make(),
+            ForceDeleteAction::make(),
+            RestoreAction::make(),
         ];
     }
 
