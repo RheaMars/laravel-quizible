@@ -3,9 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\UserResource\Pages;
-use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\User;
-use Filament\Forms;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -73,14 +71,8 @@ class UserResource extends Resource
                     ->searchable(),
                 IconColumn::make('deleted_at')
                     ->label('Status')
-                    ->options([
-                        'heroicon-o-check-badge',
-                        'heroicon-o-trash' => fn ($state, $record): bool => $record->deleted_at != null
-                    ])
-                    ->colors([
-                        'secondary',
-                        'danger' => fn ($state, $record): bool => $record->deleted_at != null,
-                    ])
+                    ->boolean()
+                    ->getStateUsing(fn ($record): bool => blank($record->deleted_at))
                     ->sortable()
             ])
             ->defaultSort('name')

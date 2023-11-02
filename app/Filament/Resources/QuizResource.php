@@ -2,7 +2,6 @@
 
 namespace App\Filament\Resources;
 
-use Filament\Forms;
 use App\Models\Quiz;
 use Filament\Tables;
 use Filament\Forms\Form;
@@ -11,17 +10,13 @@ use Filament\Resources\Resource;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\Section;
-use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\Repeater;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Builder;
-use Filament\Tables\Filters\TrashedFilter;
 use App\Filament\Resources\QuizResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\QuizResource\RelationManagers;
-use App\Filament\Resources\QuizResource\RelationManagers\QuestionsRelationManager;
 
 class QuizResource extends Resource {
     protected static ?string $model = Quiz::class;
@@ -77,17 +72,11 @@ class QuizResource extends Resource {
             ->dateTime( 'd.m.Y H:i:s' )
             ->sortable()
             ->searchable(),
-            IconColumn::make( 'deleted_at' )
-            ->label( 'Status' )
-            ->options( [
-                'heroicon-o-check-badge',
-                'heroicon-o-trash' => fn ( $state, $record ): bool => $record->deleted_at != null
-            ] )
-            ->colors( [
-                'secondary',
-                'danger' => fn ( $state, $record ): bool => $record->deleted_at != null,
-            ] )
-            ->sortable()
+            IconColumn::make('deleted_at')
+                ->label('Status')
+                ->boolean()
+                ->getStateUsing(fn ($record): bool => blank($record->deleted_at))
+                ->sortable()
         ] )
         ->filters( [
             Tables\Filters\TrashedFilter::make(),
