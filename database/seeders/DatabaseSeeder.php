@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Quiz;
 use App\Models\Answer;
+use App\Models\FlashCard;
 use App\Models\Question;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -39,5 +40,6 @@ class DatabaseSeeder extends Seeder
         Quiz::factory()->count(30)->create();
         Question::factory()->count(90)->create();
         Answer::factory()->count(270)->create();
+        FlashCard::factory()->count(270)->create();
     }
 }
