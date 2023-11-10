@@ -13,6 +13,13 @@
       0 => 'BladeUI\\Icons\\BladeIconsServiceProvider',
     ),
   ),
+  'davidhsianturi/blade-bootstrap-icons' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Davidhsianturi\\BladeBootstrapIcons\\BladeBootstrapIconsServiceProvider',
+    ),
+  ),
   'filament/actions' => 
   array (
     'providers' => 
