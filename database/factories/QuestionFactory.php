@@ -18,8 +18,7 @@ QuestionFactory extends Factory
     public function definition(): array
     {
         return [
-            'quiz_id' => fake()->numberBetween(1,30),
-            'type' => fake()->randomElement(['multiple-choice', 'true-false', 'short-answer']),
+            'type' => fake()->randomElement(['multiple-choice', 'true-false']),
             'content' => fake()->sentence(),
             'points' => fake()->randomElement([null, fake()->numberBetween(1, 5)]),
             'explanation' => fake()->randomElement([null, fake()->sentence()]),

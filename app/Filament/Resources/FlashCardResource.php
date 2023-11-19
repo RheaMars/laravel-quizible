@@ -2,7 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use Filament\Forms;
+use App\Models\Course;
+use Filament\Forms\Components\Actions\Action;
+use Filament\Forms\Components\Select;
 use Filament\Tables;
 use Filament\Forms\Form;
 use App\Models\FlashCard;
@@ -10,14 +12,12 @@ use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
-use Illuminate\Database\Eloquent\Model;
-use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\RichEditor;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\FlashCardResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\FlashCardResource\RelationManagers;
+use Illuminate\Support\Facades\Auth;
 
 class FlashCardResource extends Resource {
     protected static ?string $model = FlashCard::class;
@@ -31,17 +31,34 @@ class FlashCardResource extends Resource {
     public static function form( Form $form ): Form {
         return $form
         ->schema( [
+            Select::make('course')->label('Fach')
+                ->options(Auth::user()->courses()->pluck('name', 'id')->sort())
+                ->hintAction(
+                    Action::make('addCourse')
+                        ->label('Fach erstellen')
+                        ->form([
+                            TextInput::make('course_name')->label('Name')->required()
+                        ])
+                        ->action(function (array $data, Course $course): void {
+                            $course->user_id = Auth::user()->id;
+                            $course->name = $data['course_name'];
+                            $course->save();
+                        }),
+                ),
+            //TODO Replace by Select (dynamic text input is not working correctly)
             TextInput::make( 'category' )->label( 'Kategorie' )
-            ->datalist( function ( ?string $state, TextInput $component, $modelsearch = '\App\Models\FlashCard', $fieldsearch = 'category' ) {
-                if($state == null) {
-                    $options = $modelsearch::whereRaw('creator_id = ' . auth()->user()->id);
-                } else {
-                    $options = $modelsearch::whereRaw($fieldsearch.' like \'%'.$state.'%\''.' and creator_id = ' . auth()->user()->id);
-                }
-                return $options
-                    ->limit(20)
-                    ->pluck('category')
-                    ->toArray();
+                ->live()
+                ->datalist( function ( ?string $state, TextInput $component, $modelsearch = '\App\Models\FlashCard', $fieldsearch = 'category' ) {
+                    if($state == null) {
+                        $options = $modelsearch::whereRaw('user_id = ' . auth()->user()->id);
+                    } else {
+                        $options = $modelsearch::whereRaw($fieldsearch.' like \'%'.$state.'%\''.' and user_id = ' . auth()->user()->id);
+                    }
+                    return $options
+                        ->distinct()
+                        ->limit(20)
+                        ->pluck('category')
+                        ->toArray();
             }),
             RichEditor::make( 'frontside' )
             ->label( 'Vorderseite' )
@@ -63,29 +80,34 @@ class FlashCardResource extends Resource {
     public static function table( Table $table ): Table {
         return $table
         ->columns( [
+            TextColumn::make( 'course.name' )
+                ->label( 'Fach' )
+                ->sortable()
+                ->searchable(),
             TextColumn::make( 'category' )
-            ->label( 'Kategorie' )
-            ->searchable(),
+                ->label( 'Kategorie' )
+                ->sortable()
+                ->searchable(),
             TextColumn::make( 'frontside' )
-            ->label( 'Karteikarte' )
-            ->limit( 100 )
-            ->searchable()
-            ->html(),
+                ->label( 'Karteikarte' )
+                ->limit( 100 )
+                ->searchable()
+                ->html(),
             IconColumn::make( 'deleted_at' )
-            ->label( 'Status' )
-            ->boolean()
-            ->getStateUsing( fn ( $record ): bool => blank( $record->deleted_at ) )
-            ->sortable(),
+                ->label( 'Status' )
+                ->boolean()
+                ->getStateUsing( fn ( $record ): bool => blank( $record->deleted_at ) )
+                ->sortable(),
             TextColumn::make( 'created_at' )
-            ->label( 'Erstellt am' )
-            ->dateTime( 'd.m.Y H:i:s' )
-            ->sortable()
-            ->toggleable( isToggledHiddenByDefault: false ),
+                ->label( 'Erstellt am' )
+                ->dateTime( 'd.m.Y H:i:s' )
+                ->sortable()
+                ->toggleable( isToggledHiddenByDefault: false ),
             TextColumn::make( 'updated_at' )
-            ->label( 'Zuletzt geändert am' )
-            ->dateTime( 'd.m.Y H:i:s' )
-            ->sortable()
-            ->toggleable( isToggledHiddenByDefault: false ),
+                ->label( 'Zuletzt geändert am' )
+                ->dateTime( 'd.m.Y H:i:s' )
+                ->sortable()
+                ->toggleable( isToggledHiddenByDefault: false ),
         ] )
         ->defaultSort( 'created_at', 'desc' )
         ->filters( [
@@ -120,7 +142,7 @@ class FlashCardResource extends Resource {
     public static function getEloquentQuery(): Builder {
         $user = auth()->user();
         return FlashCard::query()
-        ->where( 'creator_id', $user->id )
+        ->where( 'user_id', $user->id )
                 ->withoutGlobalScopes( [
                     SoftDeletingScope::class,
                 ] );

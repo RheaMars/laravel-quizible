@@ -14,10 +14,15 @@ class FlashCard extends Model {
         'frontside',
         'backside',
         'category',
-        'creator_id'
+        'user_id',
+        'course_id'
     ];
 
-    public function creator(): BelongsTo {
-        return $this->belongsTo( User::class );
+    public function course(): BelongsTo {
+        return $this->belongsTo(Course::class);
+    }
+
+    public function user(): BelongsTo {
+        return $this->belongsTo(User::class);
     }
 }

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('quiz_id');
             $table->foreign('quiz_id')->references('id')->on('quizzes')->onDelete('cascade');
-            $table->enum('type', ['multiple-choice', 'true-false', 'short-answer']);
+            $table->enum('type', ['multiple-choice', 'true-false']);
             $table->text('content');
             $table->integer('points')->nullable();
             $table->text('explanation')->nullable();

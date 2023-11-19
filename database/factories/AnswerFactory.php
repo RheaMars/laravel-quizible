@@ -17,7 +17,6 @@ class AnswerFactory extends Factory
     public function definition(): array
     {
         return [
-            'question_id' => fake()->numberBetween(1,90),
             'content' => fake()->text(),
             'sort' => fake()->numberBetween(1,4),
             'is_correct' => fake()->boolean(),

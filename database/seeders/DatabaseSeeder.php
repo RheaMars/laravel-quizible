@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Course;
 use App\Models\Quiz;
 use App\Models\Answer;
 use App\Models\FlashCard;
@@ -18,28 +19,55 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-
-
-        User::factory()->create([
+        User::factory()
+            ->has(Course::factory()->count(5))
+            ->create([
             'name' => 'Admin',
             'email' => 'admin@admin.com',
         ])->assignRole(Role::create(['name' => 'admin']));
 
-        User::factory()->create([
+        User::factory()
+            ->has(Course::factory()->count(10))
+            ->create([
             'name' => 'Teacher',
             'email' => 'teacher@teacher.com',
         ])->assignRole(Role::create(['name' => 'teacher']));
 
-        User::factory()->create([
+        User::factory()
+            ->has(Course::factory()->count(5))
+            ->create([
             'name' => 'Student',
             'email' => 'student@student.com',
         ])->assignRole(Role::create(['name' => 'student']));
 
-        User::factory(10)->create();
+       foreach (User::all() as $user) {
 
-        Quiz::factory()->count(30)->create();
-        Question::factory()->count(90)->create();
-        Answer::factory()->count(270)->create();
-        FlashCard::factory()->count(270)->create();
+           Quiz::factory(10)->create([
+               'user_id' => $user->id,
+           ]);
+
+           for ($i = 1; $i <= 30; $i++) {
+               FlashCard::factory()->create([
+                   'user_id' => $user->id,
+                   'course_id' => $user->courses->shuffle()->first()->id
+               ]);
+           }
+       }
+
+       foreach (Quiz::all() as $quiz) {
+           Question::factory(5)->create([
+               'quiz_id' => $quiz->id,
+           ]);
+       }
+
+       foreach (Question::all() as $question) {
+           $numberOfAnswers = 3;
+           if ($question->type === 'true-false') {
+               $numberOfAnswers = 1;
+           }
+           Answer::factory($numberOfAnswers)->create([
+               'question_id' => $question->id,
+           ]);
+       }
     }
 }
