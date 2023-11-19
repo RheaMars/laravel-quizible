@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Models\Course;
-use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\Select;
 use Filament\Tables;
 use Filament\Forms\Form;
@@ -31,21 +30,24 @@ class FlashCardResource extends Resource {
     public static function form( Form $form ): Form {
         return $form
         ->schema( [
-            Select::make('course')->label('Fach')
-                ->options(Auth::user()->courses()->pluck('name', 'id')->sort())
-                ->hintAction(
-                    Action::make('addCourse')
-                        ->label('Fach erstellen')
-                        ->form([
-                            TextInput::make('course_name')->label('Name')->required()
-                        ])
-                        ->action(function (array $data, Course $course): void {
-                            $course->user_id = Auth::user()->id;
-                            $course->name = $data['course_name'];
-                            $course->save();
-                        }),
-                ),
-            //TODO Replace by Select (dynamic text input is not working correctly)
+            Select::make('course_id')->label('Fach')
+                ->relationship(
+                    name: 'course',
+                    titleAttribute: 'name',
+                    modifyQueryUsing: fn (Builder $query) => $query->whereBelongsTo(Auth::user()),
+                )
+                ->createOptionModalHeading('Fach erstellen')
+                ->createOptionForm([
+                    TextInput::make('course_name')
+                        ->label('Name')
+                        ->required(),
+                    ])
+                ->createOptionUsing(function (array $data, Course $course) {
+                    $course->user_id = Auth::user()->id;
+                    $course->name = $data['course_name'];
+                    $course->save();
+                }),
+            //TODO Replace by Select (dynamic text input is not working correctly!)
             TextInput::make( 'category' )->label( 'Kategorie' )
                 ->live()
                 ->datalist( function ( ?string $state, TextInput $component, $modelsearch = '\App\Models\FlashCard', $fieldsearch = 'category' ) {
