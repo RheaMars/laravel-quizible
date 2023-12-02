@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Category;
+use App\Models\Course;
 use App\Models\Quiz;
 use App\Models\Answer;
 use App\Models\FlashCard;
@@ -18,28 +20,66 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        User::factory()
+            ->has(Course::factory()->count(5))
+            ->create([
+                'name' => 'Admin',
+                'email' => 'admin@admin.com',
+            ])->assignRole(Role::create(['name' => 'admin']));
 
+        User::factory()
+            ->has(Course::factory()->count(5))
+            ->create([
+                'name' => 'Teacher',
+                'email' => 'teacher@teacher.com',
+            ])->assignRole(Role::create(['name' => 'teacher']));
 
-        User::factory()->create([
-            'name' => 'Admin',
-            'email' => 'admin@admin.com',
-        ])->assignRole(Role::create(['name' => 'admin']));
+        User::factory()
+            ->has(Course::factory()->count(5))
+            ->create([
+                'name' => 'Student',
+                'email' => 'student@student.com',
+            ])->assignRole(Role::create(['name' => 'student']));
 
-        User::factory()->create([
-            'name' => 'Teacher',
-            'email' => 'teacher@teacher.com',
-        ])->assignRole(Role::create(['name' => 'teacher']));
+        foreach (Course::all() as $course) {
+            Category::factory(3)->create([
+                'course_id' => $course->id,
+                'user_id' => $course->user_id,
+            ]);
+        }
 
-        User::factory()->create([
-            'name' => 'Student',
-            'email' => 'student@student.com',
-        ])->assignRole(Role::create(['name' => 'student']));
+        foreach (User::all() as $user) {
 
-        User::factory(10)->create();
+            Quiz::factory(10)->create([
+                'user_id' => $user->id,
+            ]);
 
-        Quiz::factory()->count(30)->create();
-        Question::factory()->count(90)->create();
-        Answer::factory()->count(270)->create();
-        FlashCard::factory()->count(270)->create();
+            for ($i = 1; $i <= 30; $i++) {
+
+                $course = $user->courses->shuffle()->first();
+
+                FlashCard::factory()->create([
+                    'user_id' => $user->id,
+                    'course_id' => $course->id,
+                    'category_id' => $course->categories->shuffle()->first()->id,
+                ]);
+            }
+        }
+
+        foreach (Quiz::all() as $quiz) {
+            Question::factory(5)->create([
+                'quiz_id' => $quiz->id,
+            ]);
+        }
+
+        foreach (Question::all() as $question) {
+            $numberOfAnswers = 3;
+            if ($question->type === 'true-false') {
+                $numberOfAnswers = 1;
+            }
+            Answer::factory($numberOfAnswers)->create([
+                'question_id' => $question->id,
+            ]);
+        }
     }
 }

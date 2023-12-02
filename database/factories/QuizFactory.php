@@ -18,7 +18,6 @@ class QuizFactory extends Factory
     {
         return [
             'name' => fake()->words(3, true),
-            'creator_id' => fake()->numberBetween(1,13),
             'created_at' => fake()->dateTimeBetween('-1 year'),
         ];
     }

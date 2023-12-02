@@ -10,10 +10,10 @@ class Quiz extends Model {
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'name', 'creator_id'
+        'name', 'user_id'
     ];
 
-    public function creator() {
+    public function user() {
         return $this->belongsTo( User::class );
     }
 

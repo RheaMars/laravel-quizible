@@ -129,7 +129,7 @@ class QuizResource extends Resource {
     public static function getEloquentQuery(): Builder {
         $user = auth()->user();
         return Quiz::query()
-        ->where( 'creator_id', $user->id )
+        ->where( 'user_id', $user->id )
         ->withoutGlobalScopes( [
             SoftDeletingScope::class,
         ] );

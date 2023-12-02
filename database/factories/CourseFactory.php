@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\FlashCard>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Course>
  */
-class FlashCardFactory extends Factory
+class CourseFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,8 +17,7 @@ class FlashCardFactory extends Factory
     public function definition(): array
     {
         return [
-            'frontside' => fake()->sentence(),
-            'backside' => fake()->text(),
+            'name' => fake()->unique()->word,
             'created_at' => fake()->dateTimeBetween('-1 year'),
         ];
     }

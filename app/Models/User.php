@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Filament\Panel;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
@@ -50,4 +49,18 @@ class User extends Authenticatable implements FilamentUser {
         return $this->hasRole( [ 'admin', 'teacher' ] );
     }
 
+    public function courses()
+    {
+        return $this->hasMany(Course::class);
+    }
+
+    public function categories()
+    {
+        return $this->hasMany(Category::class);
+    }
+
+    public function flashCards()
+    {
+        return $this->hasMany(FlashCard::class);
+    }
 }

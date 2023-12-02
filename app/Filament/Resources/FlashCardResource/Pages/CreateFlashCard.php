@@ -2,7 +2,6 @@
 
 namespace App\Filament\Resources\FlashCardResource\Pages;
 
-use Filament\Actions;
 use Illuminate\Support\Facades\Auth;
 use Filament\Resources\Pages\CreateRecord;
 use App\Filament\Resources\FlashCardResource;
@@ -14,7 +13,7 @@ class CreateFlashCard extends CreateRecord {
     protected static bool $canCreateAnother = false;
 
     protected function mutateFormDataBeforeCreate( array $data ): array {
-        $data[ 'creator_id' ] = Auth::user()->id;
+        $data[ 'user_id' ] = Auth::user()->id;
         return $data;
     }
 
