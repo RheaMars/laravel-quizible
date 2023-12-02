@@ -2,8 +2,11 @@
 
 namespace App\Filament\Resources;
 
+use App\Models\Category;
 use App\Models\Course;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Get;
+use Filament\Forms\Set;
 use Filament\Tables;
 use Filament\Forms\Form;
 use App\Models\FlashCard;
@@ -46,22 +49,30 @@ class FlashCardResource extends Resource {
                     $course->user_id = Auth::user()->id;
                     $course->name = $data['course_name'];
                     $course->save();
-                }),
-            //TODO Replace by Select (dynamic text input is not working correctly!)
-            TextInput::make( 'category' )->label( 'Kategorie' )
+                })
                 ->live()
-                ->datalist( function ( ?string $state, TextInput $component, $modelsearch = '\App\Models\FlashCard', $fieldsearch = 'category' ) {
-                    if($state == null) {
-                        $options = $modelsearch::whereRaw('user_id = ' . auth()->user()->id);
-                    } else {
-                        $options = $modelsearch::whereRaw($fieldsearch.' like \'%'.$state.'%\''.' and user_id = ' . auth()->user()->id);
-                    }
-                    return $options
-                        ->distinct()
-                        ->limit(20)
-                        ->pluck('category')
-                        ->toArray();
-            }),
+                ->afterStateUpdated(function (Set $set) {
+                    $set('category_id', '');
+                }),
+            Select::make('category_id')->label('Kategorie')
+                ->relationship(
+                    name: 'category',
+                    titleAttribute: 'name',
+                    modifyQueryUsing: fn (Builder $query, Get $get) => $query->where('course_id', $get('course_id')),
+                )
+                ->createOptionModalHeading('Kategorie erstellen')
+                ->createOptionForm([
+                    TextInput::make('category_name')
+                        ->label('Name')
+                        ->required(),
+                ])
+                ->createOptionUsing(function (array $data, Category $category, Get $get) {
+                    $category->user_id = Auth::user()->id;
+                    $category->course_id = $get('course_id');
+                    $category->name = $data['category_name'];
+                    $category->save();
+                })
+                ->hidden(fn (Get $get) => $get('course_id') === null || $get('course_id') === ''),
             RichEditor::make( 'frontside' )
             ->label( 'Vorderseite' )
             ->required()
@@ -86,7 +97,7 @@ class FlashCardResource extends Resource {
                 ->label( 'Fach' )
                 ->sortable()
                 ->searchable(),
-            TextColumn::make( 'category' )
+            TextColumn::make( 'category.name' )
                 ->label( 'Kategorie' )
                 ->sortable()
                 ->searchable(),

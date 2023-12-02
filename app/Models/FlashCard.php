@@ -13,13 +13,17 @@ class FlashCard extends Model {
     protected $fillable = [
         'frontside',
         'backside',
-        'category',
         'user_id',
-        'course_id'
+        'course_id',
+        'category_id',
     ];
 
     public function course(): BelongsTo {
         return $this->belongsTo(Course::class);
+    }
+
+    public function category(): BelongsTo {
+        return $this->belongsTo(Category::class);
     }
 
     public function user(): BelongsTo {

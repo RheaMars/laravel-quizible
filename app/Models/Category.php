@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Course extends Model
+class Category extends Model
 {
     use HasFactory, SoftDeletes;
 
@@ -17,15 +17,16 @@ class Course extends Model
      */
     protected $fillable = [
         'name',
-        'user_id'
+        'user_id',
+        'course_id'
     ];
 
     public function user() {
         return $this->belongsTo(User::class);
     }
 
-    public function categories() {
-        return $this->hasMany(Category::class);
+    public function course() {
+        return $this->belongsTo(Course::class);
     }
 
     public function flashCards() {
