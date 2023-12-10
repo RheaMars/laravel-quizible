@@ -53,7 +53,8 @@ class FlashCardResource extends Resource {
                 ->live()
                 ->afterStateUpdated(function (Set $set) {
                     $set('category_id', '');
-                }),
+                })
+                ->required(),
             Select::make('category_id')->label('Kategorie')
                 ->relationship(
                     name: 'category',
@@ -96,11 +97,11 @@ class FlashCardResource extends Resource {
             TextColumn::make( 'course.name' )
                 ->label( 'Fach' )
                 ->sortable()
-                ->searchable(),
+                ->searchable(isIndividual: true),
             TextColumn::make( 'category.name' )
                 ->label( 'Kategorie' )
                 ->sortable()
-                ->searchable(),
+                ->searchable(isIndividual: true),
             TextColumn::make( 'frontside' )
                 ->label( 'Karteikarte' )
                 ->limit( 100 )
