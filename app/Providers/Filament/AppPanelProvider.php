@@ -21,6 +21,7 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 
 class AppPanelProvider extends PanelProvider {
+
     public function panel( Panel $panel ): Panel {
         return $panel
         ->default()
@@ -38,7 +39,7 @@ class AppPanelProvider extends PanelProvider {
         ->plugin( BreezyCore::make()
         ->myProfile(
             shouldRegisterUserMenu: true, // Sets the 'account' link in the panel User Menu ( default = true )
-            shouldRegisterNavigation: true, // Adds a main navigation item for the My Profile page ( default = false )
+            shouldRegisterNavigation: false, // Adds a main navigation item for the My Profile page ( default = false )
             hasAvatars: false, // Enables the avatar upload form component ( default = false )
             slug: 'my-profile' // Sets the slug for the profile page ( default = 'my-profile' )
         ) )
@@ -60,6 +61,7 @@ class AppPanelProvider extends PanelProvider {
         ] )
         ->authMiddleware( [
             Authenticate::class,
-        ] );
+        ] )
+        ->navigationGroups(['Karteikarten', 'Quizzes', 'Admin-Bereich']);
     }
 }
