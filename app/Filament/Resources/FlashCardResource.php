@@ -25,10 +25,14 @@ class FlashCardResource extends Resource {
     protected static ?string $model = FlashCard::class;
 
     protected static ?string $navigationIcon = 'bi-card-text';
-    protected static ?string $navigationLabel = 'Karteikarten';
+    protected static ?string $navigationLabel = 'Karteikarten verwalten';
     protected static ?string $title = 'Karteikarte';
     protected static ?string $pluralModelLabel = 'Karteikarten';
     protected static ?string $modelLabel = 'Karteikarte';
+
+    protected static ?string $navigationGroup = 'Karteikarten';
+
+    protected static ?int $navigationSort = 1;
 
     public static function form( Form $form ): Form {
         return $form
@@ -149,7 +153,7 @@ class FlashCardResource extends Resource {
         return [
             'index' => Pages\ListFlashCards::route( '/' ),
             'create' => Pages\CreateFlashCard::route( '/create' ),
-            'edit' => Pages\EditFlashCard::route( '/ {record}/edit' ),
+            'edit' => Pages\EditFlashCard::route( '/{record}/edit' ),
         ];
     }
 
@@ -160,5 +164,5 @@ class FlashCardResource extends Resource {
                 ->withoutGlobalScopes( [
                     SoftDeletingScope::class,
                 ] );
-            }
-        }
+    }
+}
