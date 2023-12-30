@@ -19,7 +19,7 @@ class LearnFlashCards extends Component
 
     public function mount() {
         $user = Auth::user();
-        $this->courses = $user->courses->all();
+        $this->courses = $user->courses->sortBy('name')->all();
         $this->categories = null;
         $this->selectedCourse = null;
         $this->selectedCategory = null;
@@ -30,6 +30,7 @@ class LearnFlashCards extends Component
         if ($course === '') {
             $this->selectedCourse = null;
             $this->categories = null;
+            $this->flashcards = null;
         } else {
             $this->categories = Category::where('course_id', $course)->get()->sortBy('name');
         }
