@@ -7,10 +7,12 @@ use App\Models\Category;
 use App\Models\FlashCard;
 use Illuminate\Support\Facades\Auth;
 use App\Filament\Resources\FlashCardResource;
-
+use Livewire\WithPagination;
 
 class LearnFlashCards extends Component
 {
+    use WithPagination;
+
     public $courses;
     public $categories;
     public $selectedCourse;
@@ -27,12 +29,16 @@ class LearnFlashCards extends Component
     }
 
     public function updatedSelectedCourse($course) {
+        $this->flashcards = null;
+        $this->selectedCategory =  null;
         if ($course === '') {
             $this->selectedCourse = null;
             $this->categories = null;
-            $this->flashcards = null;
         } else {
-            $this->categories = Category::where('course_id', $course)->get()->sortBy('name');
+            $categories = Category::where('course_id', $course)->get()->sortBy('name');
+            $this->categories = $categories->filter(function ($category) {
+               return $category->flashcards->count() > 0;
+            });
         }
     }
 
