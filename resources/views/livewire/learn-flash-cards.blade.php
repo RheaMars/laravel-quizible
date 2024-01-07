@@ -4,7 +4,7 @@
             <div>
                 <label for="">Fach</label>
                 <x-filament::input.wrapper>
-                    <x-filament::input.select wire:model.live='selectedCourse'>
+                    <x-filament::input.select wire:model.live='selectedCourseId'>
                         <option value="" selected>Wählen Sie eine Option</option>
                         @foreach ($courses as $course)
                             <option value="{{ $course->id }}">{{ $course->name }}</option>
@@ -16,10 +16,10 @@
                 @if ($categories != null)
                     <label for="">Kategorie</label>
                     <x-filament::input.wrapper>
-                        <x-filament::input.select wire:model.live='selectedCategory'>
-                            <option value="" selected>Alle Kategorien (komplettes Fach)</option>
+                        <x-filament::input.select wire:model.live='selectedCategoryId'>
+                            <option value="" selected>Alle Kategorien (komplettes Fach) ({{$numberOfFlashcardsInCourse}})</option>
                             @foreach ($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                <option value="{{ $category->id }}">{{ $category->name }} ({{$category->flashcards->count()}})</option>
                             @endforeach
                         </x-filament::input.select>
                     </x-filament::input.wrapper>
