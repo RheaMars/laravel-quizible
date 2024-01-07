@@ -1,6 +1,7 @@
 <div>
+    @if(!$learningProcessStarted)
     <x-filament::fieldset>
-        <div class="grid grid-cols-3 gap-4">
+        <div class="grid grid-cols-3 gap-4" >
             <div>
                 <label for="">Fach</label>
                 <x-filament::input.wrapper>
@@ -34,13 +35,27 @@
             @endif
         </div>
     </x-filament::fieldset>
-    @if($flashcards)
+    @endif
+
+    @if($learningProcessStarted)
+        <label>
+            <x-filament::input.checkbox wire:model.live="showFlashcardsBackside" />
+            <span>Karteikarten umdrehen</span>
+        </label>
+        <div class="font-bold">{{$currentLearnedFlashcard->course->name}} {{$currentLearnedFlashcard->category->name}}</div>
         <x-filament::fieldset>
-            <ul>
-                @foreach($flashcards as $flashcard)
-                    <li>Flashcard-ID: {{ $flashcard->id }}</li>
-                @endforeach
-            </ul>
+            <div>
+                @if(!$showFlashcardsBackside)
+                    {{$currentLearnedFlashcard->frontside}}
+                @else
+                    {{$currentLearnedFlashcard->backside}}
+                @endif
+            </div>
         </x-filament::fieldset>
+        @if($flashcards->count() > 0)
+            <x-filament::button wire:click='nextFlashCard'>
+                    Weiter
+            </x-filament::button>
+        @endif
     @endif
 </div>

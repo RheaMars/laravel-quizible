@@ -7,7 +7,6 @@ use Livewire\Component;
 use App\Models\Category;
 use App\Models\FlashCard;
 use Illuminate\Support\Facades\Auth;
-use App\Filament\Resources\FlashCardResource;
 use Livewire\WithPagination;
 
 class LearnFlashCards extends Component
@@ -20,11 +19,20 @@ class LearnFlashCards extends Component
     public $selectedCategoryId;
     public $flashcards;
 
-    public $numberOfFlashcardsInCourse;
+    public bool $learningProcessStarted = false;
+
+    public FlashCard $currentLearnedFlashcard;
+
+    public int $numberOfFlashcardsInCourse;
+
+    public bool $showFlashcardsBackside = false;
 
     public function mount() {
         $user = Auth::user();
-        $this->courses = $user->courses->sortBy('name')->all();
+        $courses = $user->courses->sortBy('name');
+        $this->courses = $courses->filter(function ($course) {
+            return $course->flashcards->count() > 0;
+        });
         $this->categories = null;
         $this->selectedCourseId = null;
         $this->selectedCategoryId = null;
@@ -49,11 +57,20 @@ class LearnFlashCards extends Component
     }
 
     public function learnFlashCards() {
+
+        $this->learningProcessStarted = true;
+
         if($this->selectedCategoryId) {
             $this->flashcards = FlashCard::where('category_id', $this->selectedCategoryId)->get();
         } else {
             $this->flashcards = FlashCard::where('course_id', $this->selectedCourseId)->get();
         }
+
+        $this->currentLearnedFlashcard = $this->flashcards->shift();
+    }
+
+    public function nextFlashCard() {
+        $this->currentLearnedFlashcard =  $this->flashcards->shift();
     }
 
     public function render()
