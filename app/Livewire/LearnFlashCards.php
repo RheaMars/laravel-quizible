@@ -6,8 +6,9 @@ use App\Models\Course;
 use Livewire\Component;
 use App\Models\Category;
 use App\Models\FlashCard;
-use Illuminate\Support\Facades\Auth;
 use Livewire\WithPagination;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 
 class LearnFlashCards extends Component
 {
@@ -31,6 +32,10 @@ class LearnFlashCards extends Component
 
     public bool $learningCycleActive = false;
 
+    public Collection $flashcardsSuccess;
+
+    public Collection $flashcardsFail;
+
     public function mount() {
         $user = Auth::user();
         $courses = $user->courses->sortBy('name');
@@ -41,6 +46,8 @@ class LearnFlashCards extends Component
         $this->selectedCourseId = null;
         $this->selectedCategoryId = null;
         $this->flashcards = null;
+        $this->flashcardsSuccess = new Collection();
+        $this->flashcardsFail = new Collection();
     }
 
     public function updatedSelectedCourseId($course) {
@@ -76,11 +83,17 @@ class LearnFlashCards extends Component
     }
 
     public function finishFlashCard($result) {
+        if($result) {
+            $this->flashcardsSuccess->push($this->currentLearnedFlashcard);
+        } else {
+            $this->flashcardsFail->push($this->currentLearnedFlashcard);
+        }
         if($this->flashcards->count() != 0) {
             $this->currentLearnedFlashcard =  $this->flashcards->shift();
             $this->setSideOfCurrentFlashcardToShow();
         } else {
             $this->learningCycleActive = false;
+            $this->dispatch('open-modal', id: 'summary');
         }
     }
 
