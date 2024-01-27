@@ -56,9 +56,12 @@
             <x-filament::button wire:click='turnAroundFlashCard'>
                 Karte umdrehen
             </x-filament::button>
-            @if($flashcards->count() > 0)
-                <x-filament::button wire:click='nextFlashCard'>
-                        Weiter
+            @if($learningCycleActive)
+                <x-filament::button color="danger" wire:click="finishFlashCard(false)">
+                        Nicht gewusst
+                </x-filament::button>
+                <x-filament::button color="success" wire:click="finishFlashCard(true)">
+                        Gewusst
                 </x-filament::button>
             @endif
         </div>

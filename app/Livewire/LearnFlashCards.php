@@ -29,6 +29,8 @@ class LearnFlashCards extends Component
 
     public string $shownSideOfCurrentFlashcard;
 
+    public bool $learningCycleActive = false;
+
     public function mount() {
         $user = Auth::user();
         $courses = $user->courses->sortBy('name');
@@ -61,6 +63,7 @@ class LearnFlashCards extends Component
     public function learnFlashCards() {
 
         $this->learningProcessStarted = true;
+        $this->learningCycleActive = true;
 
         if($this->selectedCategoryId) {
             $this->flashcards = FlashCard::where('category_id', $this->selectedCategoryId)->inRandomOrder()->get();
@@ -72,9 +75,13 @@ class LearnFlashCards extends Component
         $this->setSideOfCurrentFlashcardToShow();
     }
 
-    public function nextFlashCard() {
-        $this->currentLearnedFlashcard =  $this->flashcards->shift();
-        $this->setSideOfCurrentFlashcardToShow();
+    public function finishFlashCard($result) {
+        if($this->flashcards->count() != 0) {
+            $this->currentLearnedFlashcard =  $this->flashcards->shift();
+            $this->setSideOfCurrentFlashcardToShow();
+        } else {
+            $this->learningCycleActive = false;
+        }
     }
 
     public function turnAroundFlashCard() {
