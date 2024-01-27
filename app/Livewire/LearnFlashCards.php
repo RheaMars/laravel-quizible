@@ -27,6 +27,8 @@ class LearnFlashCards extends Component
 
     public bool $showFlashcardsBackside = false;
 
+    public string $shownSideOfCurrentFlashcard;
+
     public function mount() {
         $user = Auth::user();
         $courses = $user->courses->sortBy('name');
@@ -61,20 +63,44 @@ class LearnFlashCards extends Component
         $this->learningProcessStarted = true;
 
         if($this->selectedCategoryId) {
-            $this->flashcards = FlashCard::where('category_id', $this->selectedCategoryId)->get();
+            $this->flashcards = FlashCard::where('category_id', $this->selectedCategoryId)->inRandomOrder()->get();
         } else {
-            $this->flashcards = FlashCard::where('course_id', $this->selectedCourseId)->get();
+            $this->flashcards = FlashCard::where('course_id', $this->selectedCourseId)->inRandomOrder()->get();
         }
 
         $this->currentLearnedFlashcard = $this->flashcards->shift();
+        $this->setSideOfCurrentFlashcardToShow();
     }
 
     public function nextFlashCard() {
         $this->currentLearnedFlashcard =  $this->flashcards->shift();
+        $this->setSideOfCurrentFlashcardToShow();
+    }
+
+    public function turnAroundFlashCard() {
+        $this->toggleSideOfCurrentFlashcardToShow();
     }
 
     public function render()
     {
         return view('livewire.learn-flash-cards');
+    }
+
+    private function setSideOfCurrentFlashcardToShow()
+    {
+        $this->shownSideOfCurrentFlashcard = $this->currentLearnedFlashcard->frontside;
+        if ($this->showFlashcardsBackside) {
+            $this->shownSideOfCurrentFlashcard = $this->currentLearnedFlashcard->backside;
+        }
+    }
+
+    private function toggleSideOfCurrentFlashcardToShow()
+    {
+        if ($this->shownSideOfCurrentFlashcard === $this->currentLearnedFlashcard->frontside) {
+            $this->shownSideOfCurrentFlashcard = $this->currentLearnedFlashcard->backside;
+        }
+        else  {
+            $this->shownSideOfCurrentFlashcard = $this->currentLearnedFlashcard->frontside;
+        }
     }
 }

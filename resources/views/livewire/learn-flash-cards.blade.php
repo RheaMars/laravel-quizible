@@ -27,6 +27,14 @@
                 @endif
             </div>
         </div>
+        @if ($categories != null)
+            <div class="py-4">
+                <label>
+                    <x-filament::input.checkbox wire:model.live="showFlashcardsBackside" />
+                    <span>von der Rückseite der Karteikarten lernen</span>
+                </label>
+            </div>
+        @endif
         <div class="py-4">
             @if ($categories)
                 <x-filament::button wire:click='learnFlashCards'>
@@ -38,24 +46,21 @@
     @endif
 
     @if($learningProcessStarted)
-        <label>
-            <x-filament::input.checkbox wire:model.live="showFlashcardsBackside" />
-            <span>Karteikarten umdrehen</span>
-        </label>
-        <div class="font-bold">{{$currentLearnedFlashcard->course->name}} {{$currentLearnedFlashcard->category->name}}</div>
+        <div class="font-bold py-4">{{$currentLearnedFlashcard->course->name}} {{$currentLearnedFlashcard->category->name}}</div>
         <x-filament::fieldset>
             <div>
-                @if(!$showFlashcardsBackside)
-                    {{$currentLearnedFlashcard->frontside}}
-                @else
-                    {{$currentLearnedFlashcard->backside}}
-                @endif
+                {{$shownSideOfCurrentFlashcard}}
             </div>
         </x-filament::fieldset>
-        @if($flashcards->count() > 0)
-            <x-filament::button wire:click='nextFlashCard'>
-                    Weiter
+        <div class="gap-3 flex flex-wrap items-center justify-start py-4">
+            <x-filament::button wire:click='turnAroundFlashCard'>
+                Karte umdrehen
             </x-filament::button>
-        @endif
+            @if($flashcards->count() > 0)
+                <x-filament::button wire:click='nextFlashCard'>
+                        Weiter
+                </x-filament::button>
+            @endif
+        </div>
     @endif
 </div>
