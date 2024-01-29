@@ -13,7 +13,7 @@ class FlashCardSeeder extends Seeder
     public function run(): void
     {
         Schema::disableForeignKeyConstraints();
-        DB::table('flashcards')->truncate();
+        DB::table('flash_cards')->truncate();
         Schema::enableForeignKeyConstraints();
 
         $csvFile = fopen(base_path('database/data/flashcards.csv'), 'r');

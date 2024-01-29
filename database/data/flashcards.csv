@@ -1,0 +1,866 @@
+﻿frontside;backside;user_id;course_id;category_id
+ability;Fähigkeit, Eignung, Können;1;1;1
+action;Handlung, Tat, Aktion;1;1;1
+activity;Beschäftigung, Aktivität;1;1;1
+address;Adresse;1;1;1
+adult;Erwachsener;1;1;1
+age;Alter;1;1;1
+agreement;Zustimmung, Einigung, Vereinbarung;1;1;1
+air;Luft;1;1;1
+airport;Flughafen;1;1;1
+amount;Menge, Umfang, Betrag;1;1;1
+animal;Tier;1;1;1
+answer;Antwort;1;1;1
+area;Gegend, Gebiet;1;1;1
+argument, quarrel;Streit;1;1;1
+arm;Arm;1;1;1
+art;Kunst;1;1;1
+article;Artikel, Ware, Gegenstand;1;1;1
+attention;Aufmerksamkeit;1;1;1
+audience;Zuschauer, Publikum;1;1;1
+back;Rücken, Rückseite;1;1;1
+bag;Tasche, Beutel;1;1;1
+bakery;Bäckerei;1;1;1
+bank;Bank;1;1;1
+bed;Bett;1;1;1
+bedroom;Schlafzimmer;1;1;1
+beer;Bier;1;1;1
+behaviour;Verhalten;1;1;1
+benefit;Nutzen, Vorteil;1;1;1
+bike;Fahrrad;1;1;1
+bill;Rechnung;1;1;1
+blood;Blut;1;1;1
+body;Körper, Leiche;1;1;1
+book;Buch;1;1;1
+box;Kiste, Schachtel;1;1;1
+boy;Junge;1;1;1
+bread;Brot;1;1;1
+brother;Bruder;1;1;1
+brother-in-law;Schwager;1;1;1
+building;Gebäude;1;1;1
+bus;Bus;1;1;1
+business;Geschäft;1;1;1
+cancer;Krebs;1;1;1
+capital;Hauptstadt;1;1;1
+car;Auto;1;1;1
+card;Karte (Visiten-);1;1;1
+career;Karriere, Werdegang;1;1;1
+cause;Grund, Ursache;1;1;1
+century;Jahrhundert;1;1;1
+chair;Stuhl;1;1;1
+challenge;Herausforderung;1;1;1
+chance;Gelegenheit, Zufall;1;1;1
+front;Vorderseite, Vorderteil;1;1;1
+child;Kind;1;1;1
+choice;Wahl;1;1;1
+church;Kirche;1;1;1
+cinema;Kino;1;1;1
+citizen;Bürger;1;1;1
+city;(Groß-)Stadt;1;1;1
+cloud;Wolke;1;1;1
+collection;Sammlung;1;1;1
+colour;Farbe;1;1;1
+community;Gemeinde, Gemeinschaft;1;1;1
+company;"Begleitung; Firma";1;1;1
+condition;Bedingung;1;1;1
+cost;Kosten;1;1;1
+country;Land;1;1;1
+countryside;ländlicher Raum;1;1;1
+course;"Kurs; Verlauf";1;1;1
+court;"Hof, Hinterhof; Gericht";1;1;1
+crime;Verbrechen;1;1;1
+cup;Tasse;1;1;1
+daughter;Tochter;1;1;1
+day;Tag;1;1;1
+death;Tod;1;1;1
+decade;Jahrzehnt;1;1;1
+decision;Entscheidung;1;1;1
+defense / defence;Verteidigung;1;1;1
+degree;Maß, Ausmaß, Grad;1;1;1
+development;Entwicklung;1;1;1
+difference;Unterschied;1;1;1
+difficult;schwierig;1;1;1
+direction;Richtung;1;1;1
+discussion;Diskussion;1;1;1
+disease;Krankheit;1;1;1
+doctor;Doktor;1;1;1
+dog;Hund;1;1;1
+door;Tür;1;1;1
+dream;Traum;1;1;1
+drug;Droge, Medikament;1;1;1
+east;Osten;1;1;1
+edge;Rand, Kante;1;1;1
+education;Bildung;1;1;1
+effect;Auswirkung, Effekt;1;1;1
+effort;Anstrengung;1;1;1
+election;Wahl;1;1;1
+elevator;Aufzug;1;1;1
+employee;Angestellter;1;1;1
+enemy;Feind;1;1;1
+energy;Energie;1;1;1
+grandson;Enkel(sohn);1;1;1
+granddaughter;Enkeltochter;1;1;1
+environment;Umwelt, Umfeld, Umgebung;1;1;1
+evening;Abend;1;1;1
+event;Ereignis, Vorfall;1;1;1
+evidence;Beweis;1;1;1
+example;Beispiel;1;1;1
+experience;Erfahrung;1;1;1
+eye;Auge;1;1;1
+face;Gesicht;1;1;1
+fact;Fakt, Tatsache;1;1;1
+family;Familie;1;1;1
+father;Vater;1;1;1
+fear;Angst;1;1;1
+feeling;Gefühl;1;1;1
+figure;Gestalt, Figur, Zahl;1;1;1
+finger;Finger;1;1;1
+fire;Feuer;1;1;1
+fish;Fisch;1;1;1
+floor;"Fußboden; Etage";1;1;1
+fog;Nebel;1;1;1
+food;Essen, Lebensmittel;1;1;1
+foot;Fuß;1;1;1
+Friday;Freitag;1;1;1
+friend;Freund;1;1;1
+fund;Fonds;1;1;1
+future;Zukunft;1;1;1
+game;Spiel;1;1;1
+garden;Garten;1;1;1
+gas station (AE);Tankstelle;1;1;1
+girl;Mädchen;1;1;1
+glass;Glas;1;1;1
+goal;"Ziel; Tor";1;1;1
+government;;1;1;1
+ground;Boden, Gelände;1;1;1
+group;Gruppe;1;1;1
+growth;Wachstum;1;1;1
+gun;Gewehr;1;1;1
+guy;Typ, Kerl;1;1;1
+hair;Haar/e;1;1;1
+hand;Hand;1;1;1
+head;Kopf;1;1;1
+heart;Herz;1;1;1
+heat;Hitze;1;1;1
+history;Geschichte;1;1;1
+hit;Treffer, Schlag;1;1;1
+home;"Zuhause; Heimat";1;1;1
+hospital;Krankenhaus;1;1;1
+hotel;Hotel;1;1;1
+hour;Stunde;1;1;1
+house;Haus;1;1;1
+husband;Ehemann;1;1;1
+idea;Idee;1;1;1
+image;Bild, Vorstellung;1;1;1
+impact;Auswirkung, Aufprall;1;1;1
+interest;"Interesse; Zins";1;1;1
+item;Gegenstand, Objekt;1;1;1
+juice;Saft;1;1;1
+key;Schlüssel;1;1;1
+kindergarten, nursery school;Kindergarten;1;1;1
+kitchen;Küche;1;1;1
+knowledge;Wissen;1;1;1
+lake;See;1;1;1
+land;Land;1;1;1
+language;Sprache;1;1;1
+law;Gesetz;1;1;1
+lawyer;Anwalt;1;1;1
+leg;Bein;1;1;1
+legal;gesetzlich, legal;1;1;1
+letter;Brief, Buchstabe;1;1;1
+life;Leben;1;1;1
+line;Linie, Zeile;1;1;1
+list;Liste;1;1;1
+loss;Verlust;1;1;1
+majority;Mehrheit;1;1;1
+man;Mann;1;1;1
+market;Markt;1;1;1
+marriage;Ehe;1;1;1
+matter;Angelegenheit, Anliegen;1;1;1
+measure;Maß, Ausmaß;1;1;1
+meat;Fleisch;1;1;1
+memory;Erinnerung;1;1;1
+message;Nachricht, Mitteilung;1;1;1
+method;Methode;1;1;1
+middle;Mitte, Zentrum;1;1;1
+milk;Milch;1;1;1
+minute;Minute;1;1;1
+moment;Augenblick, Moment;1;1;1
+Monday;Montag;1;1;1
+money;Geld;1;1;1
+month;Monat;1;1;1
+morning;Morgen;1;1;1
+mother;Mutter;1;1;1
+mountain;Berg;1;1;1
+mouth;Mund;1;1;1
+movement;Bewegung;1;1;1
+movie;Film;1;1;1
+music;Musik;1;1;1
+name;Name;1;1;1
+nature;Natur;1;1;1
+nephew;Neffe;1;1;1
+news;Nachricht;1;1;1
+newspaper;Zeitung;1;1;1
+niece;Nichte;1;1;1
+night;Nacht;1;1;1
+noon;Mittag;1;1;1
+north;Norden;1;1;1
+number;Zahl, Nummer;1;1;1
+offer;Angebot;1;1;1
+office;Büro;1;1;1
+oil;Öl;1;1;1
+opportunity;Möglichkeit, Gelegenheit;1;1;1
+order;"Befehl; Reihenfolge; Bestellung";1;1;1
+owner;Eigentümer;1;1;1
+page;Seite;1;1;1
+pain;Schmerz;1;1;1
+painting;"Gemälde; Anstrich";1;1;1
+paper;Papier;1;1;1
+parents;Eltern;1;1;1
+part;Teil;1;1;1
+participant;Teilnehmer;1;1;1
+party;Party;1;1;1
+patience;Geduld;1;1;1
+pattern;Muster;1;1;1
+peace;Friede;1;1;1
+people;Leute;1;1;1
+performance;Leistung;1;1;1
+person;Person;1;1;1
+petrol station (BE);Tankstelle;1;1;1
+pharmacy;Apotheke;1;1;1
+picture;Bild;1;1;1
+piece;Stück;1;1;1
+place;Ort, Stelle;1;1;1
+plane;Flugzeug;1;1;1
+plant;"Pflanze; Betrieb, Fabrik";1;1;1
+player;Spieler;1;1;1
+police;Polizei;1;1;1
+policy;Bestimmung, Grundsatz;1;1;1
+population;Bevölkerung;1;1;1
+port;Hafen;1;1;1
+position;Lage, Position, Stellung;1;1;1
+power;"Macht; Strom";1;1;1
+president;Präsident;1;1;1
+pressure;Druck;1;1;1
+price;Preis;1;1;1
+problem;Problem;1;1;1
+process;Prozess, Vorgang;1;1;1
+product;Produkt;1;1;1
+production;Produktion;1;1;1
+project;Projekt, Vorhaben;1;1;1
+property;Besitz;1;1;1
+purpose;Zweck, Ziel, Absicht;1;1;1
+quality;Qualität;1;1;1
+question;Frage;1;1;1
+radio;Radio, Funk;1;1;1
+railway station;Bahnhof;1;1;1
+rain;Regen;1;1;1
+range;Reichweite;1;1;1
+reality;Wirklichkeit, Realität;1;1;1
+reason;"Grund; Vernunft";1;1;1
+record;"Bericht, Aufzeichnung; Rekord";1;1;1
+region;Region, Gebiet;1;1;1
+relationship;Beziehung;1;1;1
+resource;Quelle, Resource;1;1;1
+response;Antwort;1;1;1
+responsibility;Verantwortung;1;1;1
+restaurant;Restaurant;1;1;1
+restroom (AE);Toilette;1;1;1
+result;Ergebnis;1;1;1
+risk;Risiko;1;1;1
+river;Fluss;1;1;1
+road;Straße;1;1;1
+rock;Fels;1;1;1
+role;Rolle, Funktion, Aufgabe;1;1;1
+room;Zimmer;1;1;1
+Saturday;Samstag;1;1;1
+scene;"Schauplatz; Szene";1;1;1
+school;Schule;1;1;1
+science;Wissenschaft;1;1;1
+sea;Meer;1;1;1
+season;Jahreszeit;1;1;1
+seat;Sitz;1;1;1
+second;Sekunde;1;1;1
+security;Sicherheit;1;1;1
+series;Folge, Serie, Reihe;1;1;1
+service;"Dienst; Service";1;1;1
+ship;Schiff;1;1;1
+shot;Schuss;1;1;1
+shoulder;Schulter;1;1;1
+side;Seite, Rand;1;1;1
+sign;Zeichen;1;1;1
+sister;Schwester;1;1;1
+sister-in-law;Schwägerin;1;1;1
+site;Grundstück, Stätte, Standort;1;1;1
+situation;Situation;1;1;1
+size;Größe;1;1;1
+skill;Fähigkeit, Können;1;1;1
+skin;Haut;1;1;1
+smile;Lächeln;1;1;1
+soldier;Soldat;1;1;1
+son;Sohn;1;1;1
+song;Lied;1;1;1
+sound;Geräusch, Klang;1;1;1
+soup;Suppe;1;1;1
+source;Quelle, Ursprung;1;1;1
+south;Süden;1;1;1
+space;Platz, Raum;1;1;1
+speech;Rede;1;1;1
+sport;Sport;1;1;1
+spring;Frühling;1;1;1
+staff;Personal, Belegschaft;1;1;1
+stage;"Bühne; Phase";1;1;1
+standard;Standard;1;1;1
+star;Stern;1;1;1
+state;"Zustand; Bundesland; Staat";1;1;1
+statement;Aussage, Erklärung;1;1;1
+step;Stufe, Schritt;1;1;1
+stepbrother;Stiefbruder;1;1;1
+stepsister;Stiefschwester;1;1;1
+stock;Vorrat;1;1;1
+store;Geschäft;1;1;1
+storm;Sturm;1;1;1
+story;Geschichte;1;1;1
+stream;Bach;1;1;1
+street;Straße;1;1;1
+structure;"Struktur; Gliederung; Gebäude";1;1;1
+student;Student, Schüler;1;1;1
+stuff;Zeug, Kram;1;1;1
+style;Stil;1;1;1
+subject;Thema, Fach;1;1;1
+subway;U-Bahn;1;1;1
+success;Erfolg;1;1;1
+summer;Sommer;1;1;1
+sun;Sonne;1;1;1
+Sunday;Sonntag;1;1;1
+support;Unterstützung;1;1;1
+surface;Oberfläche;1;1;1
+system;System, Methode;1;1;1
+table;Tisch;1;1;1
+task;Aufgabe;1;1;1
+tax;Steuer;1;1;1
+teacher;Lehrer;1;1;1
+term;"Begriff; Semester";1;1;1
+theory;Theorie;1;1;1
+thing;Ding, Sache;1;1;1
+thought;Gedanke;1;1;1
+threat;Bedrohung;1;1;1
+Thursday;Donnerstag;1;1;1
+time;Zeit;1;1;1
+toilet;Toilette;1;1;1
+towel;Handtuch;1;1;1
+town;Stadt;1;1;1
+trade;"Handel; Gewerbe, Handwerk";1;1;1
+trail;Pfad, Wanderweg;1;1;1
+train;Zug;1;1;1
+treat;Leckerei;1;1;1
+treatment;Behandlung;1;1;1
+tree;Baum;1;1;1
+trip;Reise, Ausflug;1;1;1
+trouble;Ärger;1;1;1
+truth;Wahrheit;1;1;1
+Tuesday;Dienstag;1;1;1
+type;Art, Typ, Sorte;1;1;1
+uncle;Onkel;1;1;1
+value;Wert;1;1;1
+vegetables;Gemüse;1;1;1
+victim;Opfer;1;1;1
+view;"Aussicht, Blick; Standpunkt";1;1;1
+village;Dorf, Ort;1;1;1
+violence;Gewalt;1;1;1
+voice;Stimme;1;1;1
+wall;Wand, Mauer;1;1;1
+war;Krieg;1;1;1
+water;Wasser;1;1;1
+way;Art, Weise, Weg;1;1;1
+weapon;Waffe;1;1;1
+Wednesday;Mittwoch;1;1;1
+week;Woche;1;1;1
+weekend;Wochenende;1;1;1
+weight;Gewicht;1;1;1
+west;Westen;1;1;1
+wife;Ehefrau;1;1;1
+wind;Wind;1;1;1
+window;Fenster;1;1;1
+wine;Wein;1;1;1
+woman;Frau;1;1;1
+word;Wort;1;1;1
+work;Arbeit;1;1;1
+worker;Arbeiter;1;1;1
+world;Welt;1;1;1
+year;Jahr;1;1;1
+can;können;1;1;2
+could;könnte;1;1;2
+may;dürfen, können;1;1;2
+must;müssen;1;1;2
+should;sollte;1;1;2
+to accept;akzeptieren;1;1;2
+to act;handeln, verhalten;1;1;2
+to add;hinzufügen;1;1;2
+to admit;zugeben;1;1;2
+to affect;etwas beeinflussen, sich auswirken auf etwas;1;1;2
+to agree to / with;zustimmen;1;1;2
+to allow;zulassen;1;1;2
+to appear;scheinen, den Anschein haben, aussehen;1;1;2
+to apply something;anwenden, einsetzen;1;1;2
+to approach;sich nähern, herankommen, nahen;1;1;2
+to argue (with / against);argumentieren;1;1;2
+to arrive (at);ankommen;1;1;2
+to ask something;etwas fragen;1;1;2
+to assume;annehmen, vermuten;1;1;2
+to attack;angreifen;1;1;2
+to avoid;verindern, vermeiden;1;1;2
+to be;sein;1;1;2
+to be able to;fähig sein zu;1;1;2
+to be available;verfügbar sein;1;1;2
+to beat;schlagen;1;1;2
+to become;werden;1;1;2
+to begin something;etwas anfangen, beginnen;1;1;2
+to believe in something / someone;an etwas / jemanden glauben;1;1;2
+to break;brechen;1;1;2
+to bring;bringen;1;1;2
+to build something;etwas bauen;1;1;2
+to buy something;etwas kaufen;1;1;2
+to call;rufen;1;1;2
+to call someone;jemanden anrufen;1;1;2
+to care for;sich kümmern um;1;1;2
+to carry;tragen;1;1;2
+to catch;fangen;1;1;2
+to cause;verursachen;1;1;2
+to change;ändern;1;1;2
+to charge;"berechnen; aufladen";1;1;2
+to check;kontrollieren, prüfen;1;1;2
+to choose;(aus-)wählen;1;1;2
+to claim;fordern, beanspruchen;1;1;2
+to close;schließen;1;1;2
+to come;kommen;1;1;2
+to compare;vergleichen;1;1;2
+to consider;erwägen, berücksichtigen;1;1;2
+to contain;beinhalten;1;1;2
+to continue;fortfahren, weitermachen;1;1;2
+to control;"kontrollieren; beherrschen";1;1;2
+to cover;bedecken, abdecken;1;1;2
+to create;erschaffen;1;1;2
+to cut something;etwas schneiden;1;1;2
+to deal (with);sich mit etwas befassen, mit etwas / jdm zu tun haben;1;1;2
+to decide;entscheiden;1;1;2
+to describe;beschreiben;1;1;2
+to design;entwerfen, gestalten;1;1;2
+to determine;bestimmen, festlegen;1;1;2
+to develop;entwickeln;1;1;2
+to die;sterben;1;1;2
+to discover;entdecken;1;1;2
+to do something;etwas tun, erledigen;1;1;2
+to draw;"zeichnen; auslosen";1;1;2
+to dream;träumen;1;1;2
+to drive;fahren (am Steuer);1;1;2
+to drop;fallen lassen;1;1;2
+to eat something;etwas essen;1;1;2
+to enjoy;genießen;1;1;2
+to enter;eintreten, betreten;1;1;2
+to establish;herstellen (z.B. Kontakt), einrichten;1;1;2
+to exist;existieren;1;1;2
+to expect;erwarten;1;1;2
+to explain;erklären;1;1;2
+to fail;scheitern;1;1;2
+to fall;fallen, stürzen;1;1;2
+to feel;fühlen, sich anfühlen;1;1;2
+to feel good;sich gut fühlen;1;1;2
+to fight;kämpfen;1;1;2
+to fill;füllen;1;1;2
+to find;finden;1;1;2
+to finish;beenden, fertigstellen;1;1;2
+to fly;fliegen;1;1;2
+to follow;folgen;1;1;2
+to forget;vergessen;1;1;2
+to form;formen, bilden;1;1;2
+to get along with someone;mit jemandem auskommen;1;1;2
+to get away;entfliehen, entkommen;1;1;2
+to get something from someone;etwas von jemandem bekommen;1;1;2
+to get up;aufstehen (z. B. morgens, aus dem Bett);1;1;2
+to give;geben;1;1;2
+to go;gehen, fahren;1;1;2
+to go for a walk;spazieren gehen;1;1;2
+to grow;wachsen;1;1;2
+to guess;raten;1;1;2
+to happen;passieren, geschehen;1;1;2
+to have something;etwas haben;1;1;2
+to have to do something;etwas tun müssen;1;1;2
+to hear something;etwas hören;1;1;2
+to help;helfen;1;1;2
+to help someone out;jemandem aushelfen, einspringen;1;1;2
+to help someone with something;jemandem mit etwas helfen;1;1;2
+to hit;schlagen;1;1;2
+to hold;halten;1;1;2
+to hope;hoffen;1;1;2
+to imagine;sich vorstellen;1;1;2
+to improve;verbessern;1;1;2
+to include;enthalten, beinhalten;1;1;2
+to increase;erhöhen, steigern;1;1;2
+to indicate;anzeigen, andeuten;1;1;2
+to involve;einbeziehen;1;1;2
+to issue;herausgeben, ausstellen;1;1;2
+to keep something;etwas halten, behalten;1;1;2
+to kill someone;jemanden ermorden, töten;1;1;2
+to know someone;jemanden kennen;1;1;2
+to lay;legen;1;1;2
+to lead;führen;1;1;2
+to learn something;etwas lernen;1;1;2
+to leave;weggehen, verlassen;1;1;2
+to let;lassen;1;1;2
+to lie;"liegen; lügen";1;1;2
+to like something / someone;etwas / jemanden mögen;1;1;2
+to listen to someone;jemandem zuhören;1;1;2
+to listen to something;etwas anhören;1;1;2
+to live;leben, wohnen;1;1;2
+to look;blicken, schauen;1;1;2
+to lose something;etwas verlieren;1;1;2
+to love;lieben;1;1;2
+to maintain;erhalten, instand halten;1;1;2
+to make a chair;einen Stuhl machen;1;1;2
+to make a mistake;einen Fehler machen;1;1;2
+to make something;etwas machen, herstellen;1;1;2
+to manage;führen, leiten, regeln;1;1;2
+to marry;heiraten;1;1;2
+to mean;bedeuten, meinen;1;1;2
+to measure;messen;1;1;2
+to meet someone jemanden treffen, kennenlernen;;1;1;2
+to mention;erwähnen;1;1;2
+to miss;"vermissen; verpassen";1;1;2
+to move;sich bewegen;1;1;2
+to need something;etwas brauchen;1;1;2
+to notice;bemerken;1;1;2
+to occur (to someone);auftreten, ereignen;1;1;2
+to offer;anbieten;1;1;2
+to open something;etwas öffnen, aufmachen;1;1;2
+to order;bestellen, befehlen;1;1;2
+to own;besitzen;1;1;2
+to pass;"vorbeigehen; bestehen";1;1;2
+to pay (for) something;(für) etwas bezahlen;1;1;2
+to pay someone;jemanden bezahlen, entlohnen;1;1;2
+to pay something off;etwas abbezahlen;1;1;2
+to perform;"vorführen; leisten";1;1;2
+to plan;planen;1;1;2
+to play;spielen;1;1;2
+to practice;üben, betreiben;1;1;2
+to prepare;vorbereiten, zubereiten;1;1;2
+to prevent;verhindern;1;1;2
+to process;verarbeiten;1;1;2
+to produce;produzieren;1;1;2
+to protect;schützen;1;1;2
+to prove;beweisen;1;1;2
+to provide;bereitstellen;1;1;2
+to pull;ziehen;1;1;2
+to push;schieben;1;1;2
+to put;setzen, stellen, legen;1;1;2
+to put something on the table;etwas auf den Tisch legen;1;1;2
+to reach someone / something;jemanden / etwas erreichen;1;1;2
+to read;lesen;1;1;2
+to realize;merken, erkennen;1;1;2
+to receive;erhalten;1;1;2
+to recognize;erkennen;1;1;2
+to reduce;verringern, reduzieren;1;1;2
+to reflect;nachdenken, überlegen;1;1;2
+to relate;zuordnen, etwas in Zusammenhang bringen;1;1;2
+to remain;übrigbleiben, verbleiben;1;1;2
+to remember;erinnern;1;1;2
+to remove;entfernen;1;1;2
+to report;berichten;1;1;2
+to require;benötigen;1;1;2
+to respond;antworten;1;1;2
+to rest;ausruhen;1;1;2
+to return;zurückkehren, umkehren;1;1;2
+to reveal;verraten, enthüllen;1;1;2
+to rise;aufsteigen, ansteigen;1;1;2
+to risk;riskieren;1;1;2
+to run;rennen, laufen;1;1;2
+to save;"sparen; retten";1;1;2
+to say something;etwas sagen;1;1;2
+to see;sehen;1;1;2
+to sell;verkaufen;1;1;2
+to send;senden, schicken;1;1;2
+to sense;fühlen, spüren;1;1;2
+to shake;schütteln;1;1;2
+to share;teilen;1;1;2
+to shoot;schießen;1;1;2
+to shout;schreien, brüllen;1;1;2
+to shout at someone;jemanden anschreien;1;1;2
+to show;zeigen;1;1;2
+to show off;angeben, prahlen;1;1;2
+to show someone something;jemandem etwas zeigen;1;1;2
+to sing;singen;1;1;2
+to sit;sitzen;1;1;2
+to sit on something;auf etwas sitzen;1;1;2
+to smile;lächeln;1;1;2
+to sort;sortieren, ordnen;1;1;2
+to sound;klingen;1;1;2
+to speak;sprechen;1;1;2
+to speak about something;über etwas sprechen;1;1;2
+to speak up;lauter sprechen;1;1;2
+to spend;"ausgeben; verbringen";1;1;2
+to stand;stehen;1;1;2
+to stand up;aufstehen (z. B. von einem Stuhl);1;1;2
+to start;beginnen, anfangen, starten;1;1;2
+to stay;bleiben;1;1;2
+to stop;anhalten, stoppen;1;1;2
+to study;lernen, studieren;1;1;2
+to succeed;gelingen, erfolgreich sein;1;1;2
+to suffer;leiden, ertragen;1;1;2
+to suggest;vorschlagen;1;1;2
+to support;unterstützen;1;1;2
+to take something;etwas nehmen;1;1;2
+to talk about something / someone;über etwas / jemanden reden;1;1;2
+to talk someone into something;jemanden zu etwas überreden;1;1;2
+to talk to someone;sich mit jemandem unterhalten;1;1;2
+to teach;lehren;1;1;2
+to tell someone something;jemandem etwas erzählen / mitteilen;1;1;2
+to tend to;zu etwas neigen, zu etwas tendieren;1;1;2
+to thank;danken;1;1;2
+to think;denken, meinen, glauben;1;1;2
+to throw;werfen;1;1;2
+to travel;reisen;1;1;2
+to treat;behandeln;1;1;2
+to try;versuchen, probieren;1;1;2
+to turn;(sich) umdrehen, wenden;1;1;2
+to understand;verstehen;1;1;2
+to use something;etwas benutzen, gebrauchen;1;1;2
+to visit;besuchen;1;1;2
+to vote;wählen, abstimmen;1;1;2
+to wait;warten, abwarten;1;1;2
+to wait for someone;auf jemanden warten;1;1;2
+to walk;zu Fuß gehen;1;1;2
+to want something;etwas wollen;1;1;2
+to watch;zuschauen, etwas anschauen;1;1;2
+to watch someone;jemanden beobachten, auf jemanden aufpassen;1;1;2
+to wear;tragen, anhaben;1;1;2
+to win someone over;jemanden für sich gewinnen;1;1;2
+to win something;etwas gewinnen, siegen;1;1;2
+to wish;wünschen;1;1;2
+to wonder;sich fragen, wundern;1;1;2
+to work;arbeiten;1;1;2
+to worry;sich sorgen, besorgt sein;1;1;2
+to write something;etwas schreiben;1;1;2
+affectionate;liebevoll, herzlich;1;1;3
+alone;allein;1;1;3
+ambitious;ehrgeizig;1;1;3
+anxious;ängstlich;1;1;3
+available;verfügbar;1;1;3
+away;weg, fort;1;1;3
+awesome;fantastisch, großartig;1;1;3
+bad;schlecht;1;1;3
+beautiful;wunderschön;1;1;3
+big;groß;1;1;3
+black;schwarz;1;1;3
+blue;blau;1;1;3
+bold;frech, dreist;1;1;3
+boring;langweilig;1;1;3
+brown;braun;1;1;3
+calm;ruhig, still, unbewegt;1;1;3
+candid;offen, ehrlich, aufrichtig;1;1;3
+canny;schlau, geschickt, gerissen;1;1;3
+careful;vorsichtig;1;1;3
+central;zentral;1;1;3
+certain;sicher, bestimmt;1;1;3
+cheap;billig;1;1;3
+chubby;mollig;1;1;3
+clean;sauber;1;1;3
+clear;klar, deutlich;1;1;3
+clever;klug, schlau;1;1;3
+close;nah, in der Nähe;1;1;3
+cloudy;bewölkt, trüb;1;1;3
+clumsy;ungeschickt, tollpatschig;1;1;3
+cold;kalt;1;1;3
+confident;zuversichtlich;1;1;3
+confusing;verwirrend;1;1;3
+content;zufrieden;1;1;3
+crooked;schief, schräg;1;1;3
+curious;neugierig;1;1;3
+current;aktuell, gegenwärtig;1;1;3
+dangerous;gefährlich;1;1;3
+dark;dunkel;1;1;3
+dead;tot;1;1;3
+decent;anständig, ehrbar;1;1;3
+deep;tief;1;1;3
+delicious;köstlich;1;1;3
+different;anders, unterschiedlich;1;1;3
+dirty;dreckig;1;1;3
+dishonest;verlogen;1;1;3
+dry;trocken;1;1;3
+dull;langweilig, glanzlos;1;1;3
+eager;eifrig;1;1;3
+early;früh;1;1;3
+easy;leicht, einfach;1;1;3
+educated;gebildet;1;1;3
+empty;leer;1;1;3
+energetic;energisch, tatkräftig;1;1;3
+enormous;enorm, riesig;1;1;3
+enough;genug;1;1;3
+entire;ganz, vollständig;1;1;3
+evil;böse;1;1;3
+excited;aufgeregt;1;1;3
+experienced;erfahren;1;1;3
+faithful;treu;1;1;3
+fake;falsch, gefälscht;1;1;3
+fast;schnell;1;1;3
+final;endgültig;1;1;3
+firm;fest;1;1;3
+flat;flach, eben;1;1;3
+foreign;fremd;1;1;3
+former;ehemalig;1;1;3
+free;frei, ungebunden;1;1;3
+fresh;frisch;1;1;3
+friendly;freundlich;1;1;3
+full;voll;1;1;3
+funny;lustig;1;1;3
+genuine;wahr, echt;1;1;3
+glad;froh;1;1;3
+good;gut;1;1;3
+good-looking;gutaussehend;1;1;3
+grateful;dankbar;1;1;3
+great;groß, großartig;1;1;3
+greedy;gierig;1;1;3
+green;grün;1;1;3
+half;halb;1;1;3
+handsome;gutaussehend, attraktiv (männlich);1;1;3
+happy;glücklich;1;1;3
+hard;hart, fest, schwierig;1;1;3
+hardworking;fleißig;1;1;3
+healthy;gesund;1;1;3
+heavy;schwer;1;1;3
+helpful;hilfsbereit;1;1;3
+helpless;hilflos;1;1;3
+high;hoch;1;1;3
+honest;ehrlich;1;1;3
+horrible;furchtbar;1;1;3
+hot;heiß;1;1;3
+huge;riesig;1;1;3
+human;menschlich;1;1;3
+impassive;teilnahmslos;1;1;3
+important;wichtig;1;1;3
+indifferent;desinteressiert, gleichgültig;1;1;3
+insecure;unsicher;1;1;3
+interesting;interessant;1;1;3
+international;international;1;1;3
+just;gerecht;1;1;3
+kind;freundlich, nett;1;1;3
+large;groß;1;1;3
+late;spät;1;1;3
+light;"leicht; hell";1;1;3
+likely;wahrscheinlich;1;1;3
+little;klein, wenig;1;1;3
+local;vor Ort, örtlich;1;1;3
+long;lang;1;1;3
+low;niedrig;1;1;3
+main;haupt-;1;1;3
+major;groß, hauptsächlich;1;1;3
+many;viele;1;1;3
+medical;medizinisch;1;1;3
+modern;modern;1;1;3
+modest;bescheiden;1;1;3
+moist;feucht;1;1;3
+more;mehr;1;1;3
+much;viel;1;1;3
+narrow;eng, schmal;1;1;3
+natural;natürlich;1;1;3
+necessary;notwendig;1;1;3
+new;neu;1;1;3
+next;nächste/r/s;1;1;3
+nice;nett;1;1;3
+noisy;laut, geräuschvoll;1;1;3
+official;offiziell;1;1;3
+old;alt;1;1;3
+open;offen;1;1;3
+open-minded;aufgeschlossen, vorurteilsfrei;1;1;3
+patient;geduldig;1;1;3
+personal;persönlich;1;1;3
+physical;körperlich;1;1;3
+pointed;spitz zulaufend;1;1;3
+poisonous;giftig;1;1;3
+political;politisch;1;1;3
+poor;arm;1;1;3
+popular;beliebt;1;1;3
+positive;positiv;1;1;3
+possible;möglich;1;1;3
+powerful;mächtig;1;1;3
+pretty;hübsch (weiblich);1;1;3
+private;privat;1;1;3
+professional;"beruflich; fachmännisch";1;1;3
+public;öffentlich, staatlich;1;1;3
+punctual;pünktlich;1;1;3
+quiet;leise;1;1;3
+rainy;regnerisch;1;1;3
+ready;fertig, bereit;1;1;3
+real;wirklich;1;1;3
+red;rot;1;1;3
+reliable;zuverlässig;1;1;3
+religious;religiös;1;1;3
+rich;reich;1;1;3
+ridiculous;lächerlich;1;1;3
+rough;grob, rauh, uneben;1;1;3
+round;rund, rundlich;1;1;3
+rude;unhöflich;1;1;3
+safe;sicher;1;1;3
+self-confident;selbstbewusst;1;1;3
+self-conscious;befangen, gehemmt;1;1;3
+serious;ernst;1;1;3
+sharp;spitz, scharf, schrill;1;1;3
+short;kurz;1;1;3
+significant;bedeutsam;1;1;3
+similar;ähnlich;1;1;3
+simple;einfach;1;1;3
+single;einzeln;1;1;3
+slow;langsam;1;1;3
+small;klein;1;1;3
+smart;klug;1;1;3
+snowy;verschneit;1;1;3
+social;gesellschaftlich;1;1;3
+soft;weich, sanft;1;1;3
+sour;sauer;1;1;3
+southern;südlich;1;1;3
+special;speziell;1;1;3
+specific;bestimmt, gezielt;1;1;3
+steep;steil;1;1;3
+still;still;1;1;3
+stormy;stürmisch;1;1;3
+straight;gerade;1;1;3
+strong;stark, kräftig, stabil;1;1;3
+stupid;dumm;1;1;3
+successful;erfolgreich;1;1;3
+sunny;sonnig;1;1;3
+superficial;oberflächlich;1;1;3
+sure;sicher, gewiss;1;1;3
+sweet;süß;1;1;3
+sympathetic;mitfühlend, verständnisvoll;1;1;3
+tall;groß (z. B. Körpergröße);1;1;3
+tender;zart, weich;1;1;3
+terrible;furchtbar, schrecklich;1;1;3
+thick;dick;1;1;3
+thin;dünn;1;1;3
+thrilling;spannend;1;1;3
+tidy;aufgeräumt, ordentlich;1;1;3
+tiny;winzig klein;1;1;3
+tired;müde;1;1;3
+total;gesamt, völlig, gänzlich;1;1;3
+tough;rauh, zäh, hart;1;1;3
+true;wahr;1;1;3
+trustworthy;vertrauenswürdig;1;1;3
+ugly;häßlich;1;1;3
+uneducated;ungebildet;1;1;3
+unhealthy;ungesund;1;1;3
+unjust;ungerecht;1;1;3
+unlike;ungleich;1;1;3
+valuable;wertvoll;1;1;3
+various;verschiedenartig;1;1;3
+warm;warm;1;1;3
+weak;schwach, kraftlos;1;1;3
+western;westlich;1;1;3
+wet;nass;1;1;3
+white;weiß;1;1;3
+whole;ganz, vollständig;1;1;3
+wide;breit;1;1;3
+windy;windig;1;1;3
+wonderful;wunderbar;1;1;3
+wrong;falsch;1;1;3
+yellow;gelb;1;1;3
+young;jung;1;1;3
+youthful;jugendlich;1;1;3

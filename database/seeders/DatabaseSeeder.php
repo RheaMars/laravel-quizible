@@ -3,15 +3,16 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use App\Models\Category;
-use App\Models\Course;
 use App\Models\Quiz;
-use App\Models\Answer;
-use App\Models\FlashCard;
-use App\Models\Question;
 use App\Models\User;
+use App\Models\Answer;
+use App\Models\Course;
+use App\Models\Category;
+use App\Models\Question;
+use App\Models\FlashCard;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
+use Database\Seeders\FlashCardSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -47,28 +48,31 @@ class DatabaseSeeder extends Seeder
         // Englisch-Course
         Course::create([
             'name' => 'Englisch',
-            'user_id' => 3
+            'user_id' => 1
         ]);
 
         // Categories for Englisch-Course
         Category::create([
             'name' => 'Nomen',
-            'user_id' => 3,
+            'user_id' => 1,
             'course_id' => 1
         ]);
 
         Category::create([
             'name' => 'Verben',
-            'user_id' => 3,
+            'user_id' => 1,
             'course_id' => 1
         ]);
 
         Category::create([
             'name' => 'Adjektive',
-            'user_id' => 3,
+            'user_id' => 1,
             'course_id' => 1
         ]);
 
+        $this->call([
+            FlashCardSeeder::class,
+        ]);
 
         /* foreach (Course::all() as $course) {
             Category::factory(3)->create([
