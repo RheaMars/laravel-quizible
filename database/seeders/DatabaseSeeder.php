@@ -20,28 +20,57 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // Admin
         User::factory()
-            ->has(Course::factory()->count(5))
+            //->has(Course::factory()->count(5))
             ->create([
                 'name' => 'Admin',
                 'email' => 'admin@admin.com',
             ])->assignRole(Role::create(['name' => 'admin']));
 
+        // Teacher
         User::factory()
-            ->has(Course::factory()->count(5))
+            //->has(Course::factory()->count(5))
             ->create([
                 'name' => 'Teacher',
                 'email' => 'teacher@teacher.com',
             ])->assignRole(Role::create(['name' => 'teacher']));
 
+        // Student
         User::factory()
-            ->has(Course::factory()->count(5))
+            //->has(Course::factory()->count(5))
             ->create([
                 'name' => 'Student',
                 'email' => 'student@student.com',
             ])->assignRole(Role::create(['name' => 'student']));
 
-        foreach (Course::all() as $course) {
+        // Englisch-Course
+        Course::create([
+            'name' => 'Englisch',
+            'user_id' => 3
+        ]);
+
+        // Categories for Englisch-Course
+        Category::create([
+            'name' => 'Nomen',
+            'user_id' => 3,
+            'course_id' => 1
+        ]);
+
+        Category::create([
+            'name' => 'Verben',
+            'user_id' => 3,
+            'course_id' => 1
+        ]);
+
+        Category::create([
+            'name' => 'Adjektive',
+            'user_id' => 3,
+            'course_id' => 1
+        ]);
+
+
+        /* foreach (Course::all() as $course) {
             Category::factory(3)->create([
                 'course_id' => $course->id,
                 'user_id' => $course->user_id,
@@ -80,6 +109,8 @@ class DatabaseSeeder extends Seeder
             Answer::factory($numberOfAnswers)->create([
                 'question_id' => $question->id,
             ]);
-        }
+        } */
+
+
     }
 }
