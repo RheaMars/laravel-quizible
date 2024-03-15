@@ -55,7 +55,9 @@ class QuizResource extends Resource {
                     TextInput::make( 'content' )
                     ->label( 'Frage' )
                     ->required()
-                    ->columnSpan( 3 ),
+                    ->columnSpan( 3 )
+                    ->live()
+                    ->lazy(),
                     Grid::make()
                         ->schema(fn (Get $get): array => match ($get('type')) {
                             'multiple-choice' => [
@@ -70,14 +72,18 @@ class QuizResource extends Resource {
                                 ->addActionLabel('Antwort hinzufügen')
                             ],
                             'true-false' => [
-                                Toggle::make('is_correct')->label('richtige Antwort')->inline()->columnSpan(1)
+                                Repeater::make('answers')->label('')->relationship()->orderColumn()->collapsible()->schema([
+                                    Toggle::make('is_correct')->label('richtige Antwort')->inline()->columnSpan(1)
+                                ])->addable(false)->deletable(false)->reorderable(false)->collapsible(false)
                             ],
                             default => [],
                         })
                         ->columns(4)
                         ->key('dynamicTypeFields'),
 
-                ] )->columns( 4 )->addActionLabel( 'Frage hinzufügen' ),
+                ] )->columns( 4 )
+                    ->addActionLabel( 'Frage hinzufügen' )
+                    ->itemLabel(fn (array $state): ?string => $state['content'] ?? null),
             ] ),
         ] );
     }
