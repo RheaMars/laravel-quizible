@@ -75,11 +75,17 @@ class DatabaseSeeder extends Seeder
         foreach (Question::all() as $question) {
             $numberOfAnswers = 3;
             if ($question->type === 'true-false') {
-                $numberOfAnswers = 1;
+                Answer::factory($numberOfAnswers)->create([
+                    'question_id' => $question->id,
+                    'content' => null,
+                ]);
             }
-            Answer::factory($numberOfAnswers)->create([
-                'question_id' => $question->id,
-            ]);
+            else {
+                Answer::factory($numberOfAnswers)->create([
+                    'question_id' => $question->id,
+                ]);
+            }
+
         }
     }
 }

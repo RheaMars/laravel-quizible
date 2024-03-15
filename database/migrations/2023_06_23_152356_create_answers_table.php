@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('question_id');
             $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');
-            $table->text('content');
+            $table->text('content')->nullable()->comment('null in case of true-false question');
             $table->integer('sort')->nullable();
             $table->boolean('is_correct')->default(false);
             $table->string('image_path')->nullable();
