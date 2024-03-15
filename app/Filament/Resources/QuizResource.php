@@ -81,7 +81,9 @@ class QuizResource extends Resource {
                         ->columns(4)
                         ->key('dynamicTypeFields'),
 
-                ] )->columns( 4 )->addActionLabel( 'Frage hinzufügen' ),
+                ] )->columns( 4 )
+                    ->addActionLabel( 'Frage hinzufügen' )
+                    ->itemLabel(fn (array $state): ?string => $state['content'] ?? null),
             ] ),
         ] );
     }
