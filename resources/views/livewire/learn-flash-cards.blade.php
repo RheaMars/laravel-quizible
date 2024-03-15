@@ -49,18 +49,29 @@
         <div class="font-bold py-4">{{$currentLearnedFlashcard->course->name}} {{$currentLearnedFlashcard->category->name}}</div>
         <x-filament::fieldset>
             <div>
-                {{$shownSideOfCurrentFlashcard}}
+                {!! $shownSideOfCurrentFlashcard !!}
             </div>
         </x-filament::fieldset>
         <div class="gap-3 flex flex-wrap items-center justify-start py-4">
             <x-filament::button wire:click='turnAroundFlashCard'>
                 Karte umdrehen
             </x-filament::button>
-            @if($flashcards->count() > 0)
-                <x-filament::button wire:click='nextFlashCard'>
-                        Weiter
+            @if($learningCycleActive)
+                <x-filament::button color="danger" wire:click="finishFlashCard(false)">
+                        Nicht gewusst
+                </x-filament::button>
+                <x-filament::button color="success" wire:click="finishFlashCard(true)">
+                        Gewusst
                 </x-filament::button>
             @endif
         </div>
     @endif
+    <x-filament::modal id="summary">
+        Gratuliere - du hast es geschafft.
+        @if ($flashcardsSuccess->count() === 1)
+            Du hast 1 Antwort gewusst und {{ $flashcardsFail->count() }} nicht gewusst.
+        @else
+            Du hast {{ $flashcardsSuccess->count() }} Antworten gewusst und {{ $flashcardsFail->count() }} nicht gewusst.
+        @endif
+    </x-filament::modal>
 </div>
