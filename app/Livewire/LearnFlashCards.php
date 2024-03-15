@@ -82,8 +82,8 @@ class LearnFlashCards extends Component
         $this->setSideOfCurrentFlashcardToShow();
     }
 
-    public function finishFlashCard($result) {
-        if($result) {
+    public function finishFlashCard(bool $flashCardKnown) {
+        if($flashCardKnown) {
             $this->flashcardsSuccess->push($this->currentLearnedFlashcard);
         } else {
             $this->flashcardsFail->push($this->currentLearnedFlashcard);

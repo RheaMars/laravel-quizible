@@ -68,6 +68,10 @@
     @endif
     <x-filament::modal id="summary">
         Gratuliere - du hast es geschafft.
-        Du hast {{ $flashcardsSuccess->count() }} Antworten gewusst und {{ $flashcardsFail->count() }} nicht gewusst.
+        @if ($flashcardsSuccess->count() === 1)
+            Du hast 1 Antwort gewusst und {{ $flashcardsFail->count() }} nicht gewusst.
+        @else
+            Du hast {{ $flashcardsSuccess->count() }} Antworten gewusst und {{ $flashcardsFail->count() }} nicht gewusst.
+        @endif
     </x-filament::modal>
 </div>
