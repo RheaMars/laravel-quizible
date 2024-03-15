@@ -17,8 +17,8 @@ class FlashCardFactory extends Factory
     public function definition(): array
     {
         return [
-            'frontside' => fake()->sentence(),
-            'backside' => fake()->text(),
+            'frontside' => 'vorne ' . fake()->sentence(),
+            'backside' => 'hinten ' . fake()->text(),
             'created_at' => fake()->dateTimeBetween('-1 year'),
         ];
     }

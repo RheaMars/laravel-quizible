@@ -49,7 +49,7 @@
         <div class="font-bold py-4">{{$currentLearnedFlashcard->course->name}} {{$currentLearnedFlashcard->category->name}}</div>
         <x-filament::fieldset>
             <div>
-                {{$shownSideOfCurrentFlashcard}}
+                {!! $shownSideOfCurrentFlashcard !!}
             </div>
         </x-filament::fieldset>
         <div class="gap-3 flex flex-wrap items-center justify-start py-4">
