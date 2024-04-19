@@ -37,6 +37,8 @@ class LearnFlashcards extends Component
 
     public Collection $flashcardsFail;
 
+    public int $numberOfFlashcardsToLearn;
+
     public function mount() {
         $user = Auth::user();
         $courses = $user->courses->sortBy('name');
@@ -81,6 +83,7 @@ class LearnFlashcards extends Component
             }
         }
 
+        $this->numberOfFlashcardsToLearn = $this->flashcards->count();
         $this->currentLearnedFlashcard = $this->flashcards->shift();
         $this->setSideOfCurrentFlashcardToShow();
     }

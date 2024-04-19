@@ -47,6 +47,7 @@
 
     @if($learningProcessStarted)
         <div class="font-bold py-4">{{$currentLearnedFlashcard->course->name}} {{$currentLearnedFlashcard->category->name}}</div>
+        <div>noch {{ $flashcards->count() + 1 }} von {{ $numberOfFlashcardsToLearn }} Karteikarten zu lernen</div>
         <x-filament::fieldset>
             <div>
                 {!! $shownSideOfCurrentFlashcard !!}
