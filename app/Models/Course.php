@@ -28,7 +28,7 @@ class Course extends Model
         return $this->hasMany(Category::class);
     }
 
-    public function flashCards() {
-        return $this->hasMany(FlashCard::class);
+    public function flashcards() {
+        return $this->hasMany(Flashcard::class);
     }
 }

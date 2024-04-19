@@ -37,7 +37,7 @@
         @endif
         <div class="py-4">
             @if ($categories)
-                <x-filament::button wire:click='learnFlashCards'>
+                <x-filament::button wire:click='learnFlashcards'>
                     Jetzt lernen
                 </x-filament::button>
             @endif
@@ -53,14 +53,14 @@
             </div>
         </x-filament::fieldset>
         <div class="gap-3 flex flex-wrap items-center justify-start py-4">
-            <x-filament::button wire:click='turnAroundFlashCard'>
+            <x-filament::button wire:click='turnAroundFlashcard'>
                 Karte umdrehen
             </x-filament::button>
             @if($learningCycleActive)
-                <x-filament::button color="danger" wire:click="finishFlashCard(false)">
+                <x-filament::button color="danger" wire:click="finishFlashcard(false)">
                         Nicht gewusst
                 </x-filament::button>
-                <x-filament::button color="success" wire:click="finishFlashCard(true)">
+                <x-filament::button color="success" wire:click="finishFlashcard(true)">
                         Gewusst
                 </x-filament::button>
             @endif

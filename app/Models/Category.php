@@ -29,7 +29,7 @@ class Category extends Model
         return $this->belongsTo(Course::class);
     }
 
-    public function flashCards() {
-        return $this->hasMany(FlashCard::class);
+    public function flashcards() {
+        return $this->hasMany(Flashcard::class);
     }
 }
