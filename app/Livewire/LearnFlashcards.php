@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Course;
+use App\Models\FlashcardStatistic;
 use Livewire\Component;
 use App\Models\Category;
 use App\Models\Flashcard;
@@ -90,6 +91,14 @@ class LearnFlashcards extends Component
         } else {
             $this->flashcardsFail->push($this->currentLearnedFlashcard);
         }
+
+        // Write statistics entry:
+        FlashcardStatistic::create([
+            'user_id' => $this->currentLearnedFlashcard->user->id,
+            'flashcard_id' => $this->currentLearnedFlashcard->id,
+            'known' => $flashcardKnown
+        ]);
+
         if($this->flashcards->count() != 0) {
             $this->currentLearnedFlashcard =  $this->flashcards->shift();
             $this->setSideOfCurrentFlashcardToShow();
