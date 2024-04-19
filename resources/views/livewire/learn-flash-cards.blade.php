@@ -68,10 +68,22 @@
     @endif
     <x-filament::modal id="summary">
         Gratuliere - du hast es geschafft.
+
         @if ($flashcardsSuccess->count() === 1)
             Du hast 1 Antwort gewusst und {{ $flashcardsFail->count() }} nicht gewusst.
         @else
             Du hast {{ $flashcardsSuccess->count() }} Antworten gewusst und {{ $flashcardsFail->count() }} nicht gewusst.
         @endif
+
+        @if ($flashcardsFail->count() > 0)
+            <x-filament::button color="primary" wire:click="relearnUnknownFlashcards">
+                Nicht-gewusste Karten nochmals lernen
+            </x-filament::button>
+        @endif
+
+        <x-filament::button color="gray" wire:click="redirectToLearnFlashcardsEntryPoint">
+            Zurück zur Übersicht
+        </x-filament::button>
+
     </x-filament::modal>
 </div>

@@ -67,15 +67,17 @@ class LearnFlashCards extends Component
         }
     }
 
-    public function learnFlashCards() {
+    public function learnFlashCards(bool $isRelearnFlashcards = false) {
 
         $this->learningProcessStarted = true;
         $this->learningCycleActive = true;
 
-        if($this->selectedCategoryId) {
-            $this->flashcards = FlashCard::where('category_id', $this->selectedCategoryId)->inRandomOrder()->get();
-        } else {
-            $this->flashcards = FlashCard::where('course_id', $this->selectedCourseId)->inRandomOrder()->get();
+        if (!$isRelearnFlashcards) {
+            if($this->selectedCategoryId) {
+                $this->flashcards = FlashCard::where('category_id', $this->selectedCategoryId)->inRandomOrder()->get();
+            } else {
+                $this->flashcards = FlashCard::where('course_id', $this->selectedCourseId)->inRandomOrder()->get();
+            }
         }
 
         $this->currentLearnedFlashcard = $this->flashcards->shift();
@@ -99,6 +101,19 @@ class LearnFlashCards extends Component
 
     public function turnAroundFlashCard() {
         $this->toggleSideOfCurrentFlashcardToShow();
+    }
+
+    public function redirectToLearnFlashcardsEntryPoint() {
+        $this->redirect('/learn-flash-cards');
+    }
+
+    public function relearnUnknownFlashcards() {
+        $this->flashcards = $this->flashcardsFail;
+        $this->flashcardsSuccess = new Collection();
+        $this->flashcardsFail = new Collection();
+
+        $this->dispatch('close-modal', id: 'summary');
+        $this->learnFlashCards(true);
     }
 
     public function render()
