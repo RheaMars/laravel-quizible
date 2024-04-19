@@ -1,3 +1,3 @@
 <x-filament-panels::page>
-    <livewire:learn-flash-cards/>
+    <livewire:learn-flashcards/>
 </x-filament-panels::page>

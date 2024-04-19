@@ -7,7 +7,7 @@ use App\Models\Category;
 use App\Models\Course;
 use App\Models\Quiz;
 use App\Models\Answer;
-use App\Models\FlashCard;
+use App\Models\Flashcard;
 use App\Models\Question;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -58,7 +58,7 @@ class DatabaseSeeder extends Seeder
 
                 $course = $user->courses->shuffle()->first();
 
-                FlashCard::factory()->create([
+                Flashcard::factory()->create([
                     'user_id' => $user->id,
                     'course_id' => $course->id,
                     'category_id' => $course->categories->shuffle()->first()->id,

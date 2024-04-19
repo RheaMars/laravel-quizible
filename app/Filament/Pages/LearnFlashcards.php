@@ -4,11 +4,11 @@ namespace App\Filament\Pages;
 
 use Filament\Pages\Page;
 
-class LearnFlashCards extends Page
+class LearnFlashcards extends Page
 {
     protected static ?string $navigationIcon = 'heroicon-o-light-bulb';
 
-    protected static string $view = 'filament.pages.learn-flash-cards';
+    protected static string $view = 'filament.pages.learn-flashcards';
 
     protected static ?string $title = 'Karteikarten lernen';
 

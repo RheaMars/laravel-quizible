@@ -9,7 +9,7 @@ use Filament\Forms\Get;
 use Filament\Forms\Set;
 use Filament\Tables;
 use Filament\Forms\Form;
-use App\Models\FlashCard;
+use App\Models\Flashcard;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Filament\Tables\Columns\IconColumn;
@@ -17,12 +17,12 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\RichEditor;
 use Illuminate\Database\Eloquent\Builder;
-use App\Filament\Resources\FlashCardResource\Pages;
+use App\Filament\Resources\FlashcardResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Facades\Auth;
 
-class FlashCardResource extends Resource {
-    protected static ?string $model = FlashCard::class;
+class FlashcardResource extends Resource {
+    protected static ?string $model = Flashcard::class;
 
     protected static ?string $navigationIcon = 'bi-card-text';
     protected static ?string $navigationLabel = 'Karteikarten verwalten';
@@ -151,15 +151,15 @@ class FlashCardResource extends Resource {
 
     public static function getPages(): array {
         return [
-            'index' => Pages\ListFlashCards::route( '/' ),
-            'create' => Pages\CreateFlashCard::route( '/create' ),
-            'edit' => Pages\EditFlashCard::route( '/{record}/edit' ),
+            'index' => Pages\ListFlashcards::route( '/' ),
+            'create' => Pages\CreateFlashcard::route( '/create' ),
+            'edit' => Pages\EditFlashcard::route( '/{record}/edit' ),
         ];
     }
 
     public static function getEloquentQuery(): Builder {
         $user = auth()->user();
-        return FlashCard::query()
+        return Flashcard::query()
         ->where( 'user_id', $user->id )
                 ->withoutGlobalScopes( [
                     SoftDeletingScope::class,

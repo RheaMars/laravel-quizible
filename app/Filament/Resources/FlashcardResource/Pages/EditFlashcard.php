@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Filament\Resources\FlashCardResource\Pages;
+namespace App\Filament\Resources\FlashcardResource\Pages;
 
-use App\Filament\Resources\FlashCardResource;
+use App\Filament\Resources\FlashcardResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
-class EditFlashCard extends EditRecord {
-    protected static string $resource = FlashCardResource::class;
+class EditFlashcard extends EditRecord {
+    protected static string $resource = FlashcardResource::class;
     protected static ?string $title = 'Karteikarte bearbeiten';
 
     protected function getHeaderActions(): array {

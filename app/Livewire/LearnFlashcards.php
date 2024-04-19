@@ -3,14 +3,15 @@
 namespace App\Livewire;
 
 use App\Models\Course;
+use App\Models\FlashcardStatistic;
 use Livewire\Component;
 use App\Models\Category;
-use App\Models\FlashCard;
+use App\Models\Flashcard;
 use Livewire\WithPagination;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 
-class LearnFlashCards extends Component
+class LearnFlashcards extends Component
 {
     use WithPagination;
 
@@ -22,7 +23,7 @@ class LearnFlashCards extends Component
 
     public bool $learningProcessStarted = false;
 
-    public FlashCard $currentLearnedFlashcard;
+    public Flashcard $currentLearnedFlashcard;
 
     public int $numberOfFlashcardsInCourse;
 
@@ -67,16 +68,16 @@ class LearnFlashCards extends Component
         }
     }
 
-    public function learnFlashCards(bool $isRelearnFlashcards = false) {
+    public function learnFlashcards(bool $isRelearnFlashcards = false) {
 
         $this->learningProcessStarted = true;
         $this->learningCycleActive = true;
 
         if (!$isRelearnFlashcards) {
             if($this->selectedCategoryId) {
-                $this->flashcards = FlashCard::where('category_id', $this->selectedCategoryId)->inRandomOrder()->get();
+                $this->flashcards = Flashcard::where('category_id', $this->selectedCategoryId)->inRandomOrder()->get();
             } else {
-                $this->flashcards = FlashCard::where('course_id', $this->selectedCourseId)->inRandomOrder()->get();
+                $this->flashcards = Flashcard::where('course_id', $this->selectedCourseId)->inRandomOrder()->get();
             }
         }
 
@@ -84,12 +85,20 @@ class LearnFlashCards extends Component
         $this->setSideOfCurrentFlashcardToShow();
     }
 
-    public function finishFlashCard(bool $flashCardKnown) {
-        if($flashCardKnown) {
+    public function finishFlashcard(bool $flashcardKnown) {
+        if($flashcardKnown) {
             $this->flashcardsSuccess->push($this->currentLearnedFlashcard);
         } else {
             $this->flashcardsFail->push($this->currentLearnedFlashcard);
         }
+
+        // Write statistics entry:
+        FlashcardStatistic::create([
+            'user_id' => $this->currentLearnedFlashcard->user->id,
+            'flashcard_id' => $this->currentLearnedFlashcard->id,
+            'known' => $flashcardKnown
+        ]);
+
         if($this->flashcards->count() != 0) {
             $this->currentLearnedFlashcard =  $this->flashcards->shift();
             $this->setSideOfCurrentFlashcardToShow();
@@ -99,12 +108,12 @@ class LearnFlashCards extends Component
         }
     }
 
-    public function turnAroundFlashCard() {
+    public function turnAroundFlashcard() {
         $this->toggleSideOfCurrentFlashcardToShow();
     }
 
     public function redirectToLearnFlashcardsEntryPoint() {
-        $this->redirect('/learn-flash-cards');
+        $this->redirect('/learn-flashcards');
     }
 
     public function relearnUnknownFlashcards() {
@@ -113,12 +122,12 @@ class LearnFlashCards extends Component
         $this->flashcardsFail = new Collection();
 
         $this->dispatch('close-modal', id: 'summary');
-        $this->learnFlashCards(true);
+        $this->learnFlashcards(true);
     }
 
     public function render()
     {
-        return view('livewire.learn-flash-cards');
+        return view('livewire.learn-flashcards');
     }
 
     private function setSideOfCurrentFlashcardToShow()
