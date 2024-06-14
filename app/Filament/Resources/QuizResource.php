@@ -38,7 +38,7 @@ class QuizResource extends Resource {
                 TextInput::make( 'name' )->label( 'Name' )->required(),
             ] ),
             Section::make( 'Fragen' )->collapsible()->schema( [
-                Repeater::make( 'questions' )->label( 'Frage' )->relationship()->orderColumn(  )->collapsible()->schema( [
+                Repeater::make( 'questions' )->label( '' )->relationship()->orderColumn(  )->collapsible()->schema( [
                     Select::make('type')
                         ->label('Typ')
                         ->required()
@@ -68,6 +68,7 @@ class QuizResource extends Resource {
                                         ->columnSpan(3),
                                     Toggle::make('is_correct')->label('richtige Antwort')->inline()->columnSpan(1)
                                 ])
+                                ->itemLabel(fn (array $state): ?string => $state['content'] ?? null)
                                 ->columnSpan('full')
                                 ->addActionLabel('Antwort hinzufügen')
                             ],
