@@ -41,7 +41,7 @@ class LearnFlashcards extends Component
 
     public function mount() {
         $user = Auth::user();
-        $courses = $user->courses->sortBy('name');
+        $courses = $user->courses->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE);
         $this->courses = $courses->filter(function ($course) {
             return $course->flashcards->count() > 0;
         });

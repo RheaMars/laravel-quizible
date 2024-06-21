@@ -14,7 +14,7 @@ class LearnQuiz extends Component
     public function mount()
     {
         $user = Auth::user();
-        $this->quizzes = $user->quizzes->sortBy('name');
+        $this->quizzes = $user->quizzes->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE);
         $this->selectedQuizId = null;
 
     }
