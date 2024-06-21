@@ -4,7 +4,7 @@
             <div>
                 <label for="">Quiz</label>
                 <x-filament::input.wrapper>
-                    <x-filament::input.select :searchable="true" wire:model='selectedQuizId'>
+                    <x-filament::input.select wire:model='selectedQuizId'>
                         <option value="" selected>Wählen Sie eine Option</option>
                         @foreach ($quizzes as $quiz)
                             <option value="{{ $quiz->id }}">{{ $quiz->name }}</option>
