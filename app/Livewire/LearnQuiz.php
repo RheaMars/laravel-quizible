@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 class LearnQuiz extends Component
 {
     public Collection $quizzes;
+
     public ?int $selectedQuizId;
 
     public Quiz $quiz;
@@ -24,6 +25,18 @@ class LearnQuiz extends Component
     public Question $currentLearnedQuestion;
 
     public array $checkedAnswers = [];
+
+    public array $correctlyAnsweredQuestions = [];
+
+    public array $incorrectlyAnsweredQuestions = [];
+
+    public bool $showingQuestionResult = false;
+
+    public int $numberQuestionsSucceeded = 0;
+
+    public int $numberQuestionsFailed = 0;
+
+    public bool $showSummaryModalButton = false;
 
     public function mount()
     {
@@ -50,8 +63,61 @@ class LearnQuiz extends Component
     }
 
     public function showQuestionResult(): void {
-        dd($this->checkedAnswers);
 
-        //TODO Read checked answers and compute result
+        $this->showingQuestionResult = true;
+        if ($this->questions->count() === 0) {
+            $this->showSummaryModalButton = true;
+        }
+
+        $atLeastOneError = false;
+        foreach($this->currentLearnedQuestion->answers()->get() as $answer) {
+            // Check if user checked a correct answer:
+            if ($answer->is_correct) {
+                if (array_key_exists($answer->id, $this->checkedAnswers) && true === $this->checkedAnswers[$answer->id]) {
+                    $this->correctlyAnsweredQuestions[] = $answer->id;
+                }
+                else {
+                    $this->incorrectlyAnsweredQuestions[] = $answer->id;
+                    $atLeastOneError = true;
+                }
+            }
+            // Check if user did not check an incorrect answer:
+            else {
+                if (!array_key_exists($answer->id, $this->checkedAnswers) || false === $this->checkedAnswers[$answer->id]) {
+                    $this->correctlyAnsweredQuestions[] = $answer->id;
+                }
+                else {
+                    $this->incorrectlyAnsweredQuestions[] = $answer->id;
+                    $atLeastOneError = true;
+                }
+            }
+        }
+
+        if ($atLeastOneError) {
+            $this->numberQuestionsFailed++;
+        } else {
+            $this->numberQuestionsSucceeded++;
+        }
+    }
+
+    public function finishQuestion(): void
+    {
+        $this->showingQuestionResult = false;
+        $this->correctlyAnsweredQuestions = [];
+        $this->incorrectlyAnsweredQuestions = [];
+
+        if ($this->questions->count() > 0) {
+            $this->currentLearnedQuestion =  $this->questions->shift();
+        }
+    }
+
+    public function finishQuiz(): void
+    {
+        $this->dispatch('open-modal', id: 'summary');
+    }
+
+    public function redirectToLearnQuizzesEntryPoint(): void
+    {
+        $this->redirect('/learn-quiz');
     }
 }
