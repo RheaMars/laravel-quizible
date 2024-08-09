@@ -39,19 +39,31 @@
                             @if($showingQuestionResult)
                                 <span>
                                     @if(in_array($answer->id, $correctlyAnsweredQuestions))
-                                        <x-icon-correct/>
+                                        <x-icon-correct />
                                     @else
-                                        <x-icon-incorrect/>
+                                        <x-icon-incorrect />
                                     @endif
                                 </span>
                             @endif
-                            <x-filament::input.checkbox wire:model="checkedAnswers.{{ $answer->id }}"/>
+                            <x-filament::input.checkbox wire:model="checkedAnswers.{{ $answer->id }}" />
                             <span>{{$answer->content}}</span>
                         </label>
                     </div>
                 @endforeach
             @elseif($currentLearnedQuestion->type === "true-false")
-                TODO Wahr-Falsch-Frage
+                <label>
+                    @if($showingQuestionResult)
+                        <span>
+                            @if(count($correctlyAnsweredQuestions) > 0)
+                                <x-icon-correct />
+                            @else
+                                <x-icon-incorrect />
+                            @endif
+                        </span>
+                    @endif
+                    <x-filament::input.checkbox wire:model="checkedAnswers" />
+                    <span>Wahr</span>
+                </label>
             @endif
         </x-filament::fieldset>
         <div class="gap-3 flex flex-wrap items-center justify-start py-4">

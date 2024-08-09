@@ -38,6 +38,7 @@ class LearnQuiz extends Component
 
     public bool $showSummaryModalButton = false;
 
+
     public function mount()
     {
         $user = Auth::user();
@@ -64,39 +65,54 @@ class LearnQuiz extends Component
 
     public function showQuestionResult(): void {
 
+
         $this->showingQuestionResult = true;
         if ($this->questions->count() === 0) {
             $this->showSummaryModalButton = true;
         }
 
-        $atLeastOneError = false;
-        foreach($this->currentLearnedQuestion->answers()->get() as $answer) {
-            // Check if user checked a correct answer:
-            if ($answer->is_correct) {
-                if (array_key_exists($answer->id, $this->checkedAnswers) && true === $this->checkedAnswers[$answer->id]) {
-                    $this->correctlyAnsweredQuestions[] = $answer->id;
+        if ($this->currentLearnedQuestion->type === "multiple-choice") {
+            $atLeastOneError = false;
+            foreach($this->currentLearnedQuestion->answers()->get() as $answer) {
+                // Check if user checked a correct answer:
+                if ($answer->is_correct) {
+                    if (array_key_exists($answer->id, $this->checkedAnswers) && true === $this->checkedAnswers[$answer->id]) {
+                        $this->correctlyAnsweredQuestions[] = $answer->id;
+                    }
+                    else {
+                        $this->incorrectlyAnsweredQuestions[] = $answer->id;
+                        $atLeastOneError = true;
+                    }
                 }
+                // Check if user did not check an incorrect answer:
                 else {
-                    $this->incorrectlyAnsweredQuestions[] = $answer->id;
-                    $atLeastOneError = true;
+                    if (!array_key_exists($answer->id, $this->checkedAnswers) || false === $this->checkedAnswers[$answer->id]) {
+                        $this->correctlyAnsweredQuestions[] = $answer->id;
+                    }
+                    else {
+                        $this->incorrectlyAnsweredQuestions[] = $answer->id;
+                        $atLeastOneError = true;
+                    }
                 }
             }
-            // Check if user did not check an incorrect answer:
-            else {
-                if (!array_key_exists($answer->id, $this->checkedAnswers) || false === $this->checkedAnswers[$answer->id]) {
-                    $this->correctlyAnsweredQuestions[] = $answer->id;
-                }
-                else {
-                    $this->incorrectlyAnsweredQuestions[] = $answer->id;
-                    $atLeastOneError = true;
-                }
+
+            if ($atLeastOneError) {
+                $this->numberQuestionsFailed++;
+            } else {
+                $this->numberQuestionsSucceeded++;
             }
         }
+        elseif ($this->currentLearnedQuestion->type === "true-false") {
 
-        if ($atLeastOneError) {
-            $this->numberQuestionsFailed++;
-        } else {
-            $this->numberQuestionsSucceeded++;
+            $answer = $this->currentLearnedQuestion->answers()->first();
+            if ($this->checkedAnswers && $answer->is_correct || !$this->checkedAnswers && !$answer->is_correct) {
+                $this->correctlyAnsweredQuestions[] = $answer->id;
+                $this->numberQuestionsSucceeded++;
+            }
+            else {
+                $this->incorrectlyAnsweredQuestions[] = $answer->id;
+                $this->numberQuestionsFailed++;
+            }
         }
     }
 
@@ -105,6 +121,7 @@ class LearnQuiz extends Component
         $this->showingQuestionResult = false;
         $this->correctlyAnsweredQuestions = [];
         $this->incorrectlyAnsweredQuestions = [];
+        $this->checkedAnswers = [];
 
         if ($this->questions->count() > 0) {
             $this->currentLearnedQuestion =  $this->questions->shift();
