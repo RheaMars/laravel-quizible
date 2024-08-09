@@ -1,10 +1,11 @@
 <div>
+    @if(!$learningProcessStarted)
     <x-filament::fieldset>
         <div class="grid grid-cols-3 gap-4" >
             <div>
                 <label for="">Quiz</label>
                 <x-filament::input.wrapper>
-                    <x-filament::input.select :searchable="true" wire:model='selectedQuizId'>
+                    <x-filament::input.select wire:model.live='selectedQuizId'>
                         <option value="" selected>Wählen Sie eine Option</option>
                         @foreach ($quizzes as $quiz)
                             <option value="{{ $quiz->id }}">{{ $quiz->name }}</option>
@@ -15,55 +16,87 @@
         </div>
 
         <div class="py-4">
-            @if ($quiz)
+            @if ($selectedQuizId)
                 <x-filament::button wire:click='learnQuiz'>
                     Jetzt lernen
                 </x-filament::button>
             @endif
         </div>
     </x-filament::fieldset>
+    @endif
 
-
-    {{-- @if($learningProcessStarted)
-        <div class="font-bold py-4">{{$currentLearnedFlashcard->course->name}} {{$currentLearnedFlashcard->category->name}}</div>
-        <div>noch {{ $flashcards->count() + 1 }} von {{ $numberOfFlashcardsToLearn }} Karteikarten zu lernen</div>
+    @if($learningProcessStarted)
+        <div class="font-bold py-4">{{ $quiz->name }}</div>
+        <div>noch {{ $questions->count() + 1}} von {{ $numberOfQuestionsToLearn }} Fragen</div>
         <x-filament::fieldset>
-            <div>
-                {!! $shownSideOfCurrentFlashcard !!}
-            </div>
+            <div>{{ $currentLearnedQuestion->content }}</div>
+        </x-filament::fieldset>
+        <x-filament::fieldset>
+            @if($currentLearnedQuestion->type === "multiple-choice")
+                @foreach($currentLearnedQuestion->answers->sortBy("sort") as $answer)
+                    <div>
+                        <label>
+                            @if($showingQuestionResult)
+                                <span>
+                                    @if(in_array($answer->id, $correctlyAnsweredQuestions))
+                                        <x-icon-correct />
+                                    @else
+                                        <x-icon-incorrect />
+                                    @endif
+                                </span>
+                            @endif
+                            <x-filament::input.checkbox wire:model="checkedAnswers.{{ $answer->id }}" />
+                            <span>{{$answer->content}}</span>
+                        </label>
+                    </div>
+                @endforeach
+            @elseif($currentLearnedQuestion->type === "true-false")
+                <label>
+                    @if($showingQuestionResult)
+                        <span>
+                            @if(count($correctlyAnsweredQuestions) > 0)
+                                <x-icon-correct />
+                            @else
+                                <x-icon-incorrect />
+                            @endif
+                        </span>
+                    @endif
+                    <x-filament::input.checkbox wire:model="checkedAnswers" />
+                    <span>Wahr</span>
+                </label>
+            @endif
         </x-filament::fieldset>
         <div class="gap-3 flex flex-wrap items-center justify-start py-4">
-            <x-filament::button wire:click='turnAroundFlashcard'>
-                Karte umdrehen
-            </x-filament::button>
-            @if($learningCycleActive)
-                <x-filament::button color="danger" wire:click="finishFlashcard(false)">
-                        Nicht gewusst
+            @if(!$showingQuestionResult)
+                <x-filament::button color="primary" wire:click="showQuestionResult()">
+                    Auflösen
                 </x-filament::button>
-                <x-filament::button color="success" wire:click="finishFlashcard(true)">
-                        Gewusst
+            @elseif($questions->count() > 0)
+                <x-filament::button color="primary" wire:click="finishQuestion()">
+                    Nächste Frage
+                </x-filament::button>
+            @endif
+
+            @if($showSummaryModalButton)
+                <x-filament::button color="primary" wire:click="finishQuiz()">
+                    Ergebnis anzeigen
                 </x-filament::button>
             @endif
         </div>
     @endif
+
     <x-filament::modal id="summary">
         Gratuliere - du hast es geschafft.
 
-        @if ($flashcardsSuccess->count() === 1)
-            Du hast 1 Antwort gewusst und {{ $flashcardsFail->count() }} nicht gewusst.
+        @if ($numberQuestionsSucceeded === 1)
+            Du hast 1 Frage richtig beantwortet und {{ $numberQuestionsFailed }} nicht.
         @else
-            Du hast {{ $flashcardsSuccess->count() }} Antworten gewusst und {{ $flashcardsFail->count() }} nicht gewusst.
+            Du hast {{ $numberQuestionsSucceeded }} Fragen korrekt beantwortet und {{ $numberQuestionsFailed }} nicht.
         @endif
 
-        @if ($flashcardsFail->count() > 0)
-            <x-filament::button color="primary" wire:click="relearnUnknownFlashcards">
-                Nicht-gewusste Karten nochmals lernen
-            </x-filament::button>
-        @endif
-
-        <x-filament::button color="gray" wire:click="redirectToLearnFlashcardsEntryPoint">
+        <x-filament::button color="gray" wire:click="redirectToLearnQuizzesEntryPoint">
             Zurück zur Übersicht
         </x-filament::button>
 
-    </x-filament::modal> --}}
+    </x-filament::modal>
 </div>
