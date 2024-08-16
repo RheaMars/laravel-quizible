@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Question;
 use App\Models\Quiz;
+use App\Models\QuizStatistic;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
@@ -64,7 +65,6 @@ class LearnQuiz extends Component
     }
 
     public function showQuestionResult(): void {
-
 
         $this->showingQuestionResult = true;
         if ($this->questions->count() === 0) {
@@ -131,6 +131,12 @@ class LearnQuiz extends Component
     public function finishQuiz(): void
     {
         $this->dispatch('open-modal', id: 'summary');
+
+        // Write statistics entry:
+        QuizStatistic::create([
+            'user_id' => $this->quiz->user->id,
+            'quiz_id' => $this->quiz->id
+        ]);
     }
 
     public function redirectToLearnQuizzesEntryPoint(): void
